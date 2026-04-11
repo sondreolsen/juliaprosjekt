@@ -381,12 +381,12 @@ h2 {
 }
 
 .mouth-fill {
-  fill: rgba(179, 82, 92, 0.84);
+  fill: rgba(191, 98, 108, 0.88);
 }
 
 .smile-stroke {
-  stroke: rgba(166, 72, 84, 0.92);
-  stroke-width: 3.8;
+  stroke: rgba(154, 70, 83, 0.82);
+  stroke-width: 2.6;
 }
 
 .outfit-fill {

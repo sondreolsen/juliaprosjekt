@@ -374,8 +374,8 @@ function buildExportStyles() {
     .lash-stroke { stroke: #40343c; stroke-width: 4.2; }
     .wink-stroke { stroke: #40343c; stroke-width: 4.4; }
     .nose-stroke { stroke: rgba(140, 91, 76, 0.64); stroke-width: 3.2; }
-    .mouth-fill { fill: rgba(179, 82, 92, 0.84); }
-    .smile-stroke { stroke: rgba(166, 72, 84, 0.92); stroke-width: 3.8; }
+    .mouth-fill { fill: rgba(191, 98, 108, 0.88); }
+    .smile-stroke { stroke: rgba(154, 70, 83, 0.82); stroke-width: 2.6; }
     .outfit-fill { fill: ${OPTIONS.outfitColor[state.outfitColor]}; }
     .outfit-shadow { fill: rgba(58, 27, 43, 0.18); }
     .outfit-neckline, .shirt-fill { fill: rgba(255, 255, 255, 0.92); }
