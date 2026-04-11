@@ -38,6 +38,9 @@ const DEFAULT_STATE = {
   background: "cotton"
 };
 
+const STORAGE_KEY = "timba-avatar-state";
+const LEGACY_STORAGE_KEY = "julia-avatar-state";
+
 const state = loadState();
 
 const preview = document.getElementById("avatar-preview");
@@ -86,7 +89,7 @@ document.getElementById("randomize-button").addEventListener("click", () => {
 });
 
 document.getElementById("save-button").addEventListener("click", () => {
-  localStorage.setItem("julia-avatar-state", JSON.stringify(state));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   saveMessage.textContent = "Avataren er lagret på denne enheten.";
 });
 
@@ -146,7 +149,8 @@ function calculateScore() {
 
 function loadState() {
   try {
-    const saved = JSON.parse(localStorage.getItem("julia-avatar-state"));
+    const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
+    const saved = JSON.parse(raw);
     return { ...DEFAULT_STATE, ...saved };
   } catch {
     return { ...DEFAULT_STATE };
