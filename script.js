@@ -35,6 +35,8 @@ const DEFAULT_STATE = {
   outfit: "dress",
   outfitColor: "bubblegum",
   accessory: "bow",
+  hairBling: "clip",
+  jewelry: "necklace",
   background: "cotton"
 };
 
@@ -49,6 +51,8 @@ const head = document.getElementById("avatar-head");
 const eyes = document.getElementById("avatar-eyes");
 const body = document.getElementById("avatar-body");
 const accessory = document.getElementById("avatar-accessory");
+const hairBling = document.getElementById("avatar-hair-bling");
+const jewelry = document.getElementById("avatar-jewelry");
 const score = document.getElementById("style-score");
 const nameInput = document.getElementById("avatar-name");
 const nameplate = document.getElementById("avatar-nameplate");
@@ -82,6 +86,8 @@ document.getElementById("randomize-button").addEventListener("click", () => {
   state.outfit = randomFrom(["dress", "hoodie", "cape"]);
   state.outfitColor = randomKey(OPTIONS.outfitColor);
   state.accessory = randomFrom(["bow", "glasses", "star", "none"]);
+  state.hairBling = randomFrom(["clip", "pearls", "tiara", "none"]);
+  state.jewelry = randomFrom(["necklace", "choker", "earrings", "none"]);
   state.background = randomFrom(["cotton", "sunset", "disco", "ocean"]);
   renderControls();
   renderAvatar();
@@ -114,6 +120,8 @@ function renderAvatar() {
   eyes.className = `avatar-eyes eyes-${state.eyes}`;
   body.className = `avatar-body outfit-${state.outfit}`;
   accessory.className = `avatar-accessory accessory-${state.accessory}`;
+  hairBling.className = `avatar-hair-bling hair-bling-${state.hairBling}`;
+  jewelry.className = `avatar-jewelry jewelry-${state.jewelry}`;
 
   score.textContent = calculateScore();
 }
@@ -144,6 +152,12 @@ function calculateScore() {
   }
   if (state.accessory !== "none") {
     total += 5;
+  }
+  if (state.hairBling !== "none") {
+    total += 4;
+  }
+  if (state.jewelry !== "none") {
+    total += 4;
   }
   if (state.eyes === "dreamy") {
     total += 4;

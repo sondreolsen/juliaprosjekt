@@ -682,6 +682,148 @@ h2 {
   z-index: 3;
 }
 
+.avatar-hair-bling,
+.avatar-jewelry {
+  position: absolute;
+  z-index: 4;
+}
+
+.hair-bling-none,
+.jewelry-none {
+  display: none;
+}
+
+.hair-bling-clip {
+  top: 34px;
+  left: 142px;
+  width: 34px;
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fff 0%, #ffb3d1 100%);
+  transform: rotate(-18deg);
+  box-shadow: 0 6px 10px rgba(255, 102, 163, 0.25);
+}
+
+.hair-bling-clip::after {
+  content: "";
+  position: absolute;
+  inset: 4px 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.hair-bling-pearls {
+  top: 30px;
+  left: 132px;
+  width: 56px;
+  height: 22px;
+}
+
+.hair-bling-pearls::before,
+.hair-bling-pearls::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 56px;
+  height: 22px;
+  background:
+    radial-gradient(circle at 8px 11px, #fff 0 5px, transparent 6px),
+    radial-gradient(circle at 24px 8px, #fff 0 5px, transparent 6px),
+    radial-gradient(circle at 40px 11px, #fff 0 5px, transparent 6px);
+}
+
+.hair-bling-tiara {
+  top: 16px;
+  left: 50%;
+  width: 82px;
+  height: 30px;
+  transform: translateX(-50%);
+  border-top: 4px solid #f7d36f;
+  border-radius: 50% 50% 0 0;
+}
+
+.hair-bling-tiara::before,
+.hair-bling-tiara::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50% 50% 0 50%;
+  border: 3px solid #f7d36f;
+  border-right: 0;
+  border-bottom: 0;
+  transform: rotate(45deg);
+}
+
+.hair-bling-tiara::before {
+  left: 8px;
+}
+
+.hair-bling-tiara::after {
+  right: 8px;
+}
+
+.jewelry-necklace {
+  top: 192px;
+  left: 50%;
+  width: 74px;
+  height: 36px;
+  transform: translateX(-50%);
+  border-bottom: 4px solid #f5d96b;
+  border-radius: 0 0 42px 42px;
+}
+
+.jewelry-necklace::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffd84d;
+  transform: translateX(-50%);
+}
+
+.jewelry-choker {
+  top: 198px;
+  left: 50%;
+  width: 54px;
+  height: 10px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #7b2cbf 0%, #ff5da2 100%);
+}
+
+.jewelry-earrings {
+  top: 106px;
+  left: 50%;
+  width: 170px;
+  height: 36px;
+  transform: translateX(-50%);
+}
+
+.jewelry-earrings::before,
+.jewelry-earrings::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 12px;
+  height: 24px;
+  border: 3px solid #ffd84d;
+  border-top: 0;
+  border-radius: 0 0 999px 999px;
+}
+
+.jewelry-earrings::before {
+  left: 10px;
+}
+
+.jewelry-earrings::after {
+  right: 10px;
+}
+
 .accessory-bow {
   top: 28px;
   left: 54%;
