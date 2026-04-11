@@ -350,7 +350,6 @@ h2 {
 .lash-stroke,
 .wink-stroke,
 .nose-stroke,
-.smile-stroke,
 .glasses-bridge,
 .glasses-stroke,
 .jewel-stroke,
@@ -382,11 +381,6 @@ h2 {
 
 .mouth-fill {
   fill: rgba(191, 98, 108, 0.88);
-}
-
-.smile-stroke {
-  stroke: rgba(154, 70, 83, 0.82);
-  stroke-width: 2.6;
 }
 
 .outfit-fill {

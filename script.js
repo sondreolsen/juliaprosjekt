@@ -373,13 +373,12 @@ function buildExportStyles() {
     .iris-fill { fill: ${OPTIONS.eyeColor[state.eyeColor]}; }
     .pupil-fill { fill: rgba(34, 26, 31, 0.9); }
     .eye-shine { fill: rgba(255, 255, 255, 0.95); }
-    .brow-stroke, .lash-stroke, .wink-stroke, .nose-stroke, .smile-stroke, .glasses-bridge, .glasses-stroke, .jewel-stroke, .tiara-stroke { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .brow-stroke, .lash-stroke, .wink-stroke, .nose-stroke, .glasses-bridge, .glasses-stroke, .jewel-stroke, .tiara-stroke { fill: none; stroke-linecap: round; stroke-linejoin: round; }
     .brow-stroke { stroke: #4a3841; stroke-width: 5.4; }
     .lash-stroke { stroke: #40343c; stroke-width: 4.2; }
     .wink-stroke { stroke: #40343c; stroke-width: 4.4; }
     .nose-stroke { stroke: rgba(140, 91, 76, 0.64); stroke-width: 3.2; }
     .mouth-fill { fill: rgba(191, 98, 108, 0.88); }
-    .smile-stroke { stroke: rgba(154, 70, 83, 0.82); stroke-width: 2.6; }
     .outfit-fill { fill: ${OPTIONS.outfitColor[state.outfitColor]}; }
     .outfit-shadow { fill: rgba(58, 27, 43, 0.18); }
     .outfit-neckline, .shirt-fill { fill: rgba(255, 255, 255, 0.92); }
