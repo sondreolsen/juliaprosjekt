@@ -95,10 +95,6 @@ document.getElementById("randomize-button").addEventListener("click", () => {
   saveMessage.textContent = "Ny tilfeldig avatar klar.";
 });
 
-document.getElementById("save-button").addEventListener("click", () => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  saveMessage.textContent = "Avataren er lagret på denne enheten.";
-});
 
 downloadButton.addEventListener("click", async () => {
   const originalLabel = downloadButton.textContent;
