@@ -529,11 +529,11 @@ h2 {
 .avatar-mouth {
   position: absolute;
   left: 50%;
-  bottom: 16px;
-  width: 30px;
-  height: 16px;
-  background: linear-gradient(180deg, #d86a7d 0%, #b94a63 100%);
-  border-radius: 45% 45% 55% 55%;
+  bottom: 14px;
+  width: 34px;
+  height: 18px;
+  border-bottom: 4px solid #c75870;
+  border-radius: 0 0 28px 28px;
   transform: translateX(-50%);
 }
 

@@ -442,10 +442,11 @@ function drawFace(context, eyeColor) {
   context.ellipse(42, -10, 14, 8, 0, 0, Math.PI * 2);
   context.fill();
 
-  context.fillStyle = "#c75870";
+  context.strokeStyle = "#c75870";
+  context.lineWidth = 5;
   context.beginPath();
-  context.ellipse(0, 20, 15, 8, 0, 0, Math.PI * 2);
-  context.fill();
+  context.arc(0, 18, 16, 0.2, Math.PI - 0.2);
+  context.stroke();
 }
 
 function drawEye(context, x, y, eyeColor, mode) {
