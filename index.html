@@ -30,210 +30,20 @@
         <div class="avatar-stage-header">
           <div>
             <p class="eyebrow">Avatarspill</p>
-            <h2>Design en superstilig avatar</h2>
+            <h2>Bygg en avatar med Toon Head</h2>
           </div>
-          <p class="avatar-score">Stilpoeng: <span id="style-score">88</span></p>
+          <p class="avatar-score">Stilpoeng: <span id="style-score">92</span></p>
         </div>
 
         <div class="avatar-preview" id="avatar-preview" data-bg="cotton">
           <div class="sparkles sparkles-a"></div>
           <div class="sparkles sparkles-b"></div>
-          <svg
-            class="avatar-canvas"
-            id="avatar-canvas"
-            viewBox="0 0 420 520"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
+          <img
+            id="avatar-image"
+            class="avatar-image"
+            src=""
+            alt="Toon Head-avatar"
           >
-            <g class="avatar-figure" transform="translate(0 8)">
-              <g class="avatar-outfit avatar-outfit-dress" data-outfit="dress">
-                <path class="outfit-fill" d="M140 326C154 299 176 285 197 285H223C244 285 266 299 280 326L314 445H106L140 326Z" />
-                <path class="outfit-shadow" d="M170 318C183 309 196 305 210 305C224 305 237 309 250 318V445H170V318Z" />
-                <path class="outfit-neckline" d="M176 294C185 308 196 314 210 314C224 314 235 308 244 294C240 286 232 281 222 281H198C188 281 180 286 176 294Z" />
-                <path class="sleeve-fill" d="M126 340C107 347 95 363 90 385C86 404 93 419 107 423C123 428 136 418 138 400L126 340Z" />
-                <path class="sleeve-fill" d="M294 340C313 347 325 363 330 385C334 404 327 419 313 423C297 428 284 418 282 400L294 340Z" />
-              </g>
-
-              <g class="avatar-outfit avatar-outfit-blazer" data-outfit="blazer" hidden>
-                <path class="shirt-fill" d="M168 288H252C272 300 281 330 284 445H136C139 330 148 300 168 288Z" />
-                <path class="outfit-fill" d="M136 300C151 289 170 283 193 283L179 446H96L117 341C121 320 127 309 136 300Z" />
-                <path class="outfit-fill" d="M284 300C269 289 250 283 227 283L241 446H324L303 341C299 320 293 309 284 300Z" />
-                <path class="lapel-fill" d="M179 284L208 346L194 360L167 312L179 284Z" />
-                <path class="lapel-fill" d="M241 284L212 346L226 360L253 312L241 284Z" />
-                <path class="outfit-shadow" d="M179 284L198 338L175 446H144L151 326C154 308 163 293 179 284Z" />
-                <path class="outfit-shadow" d="M241 284L222 338L245 446H276L269 326C266 308 257 293 241 284Z" />
-              </g>
-
-              <g class="avatar-outfit avatar-outfit-top" data-outfit="top" hidden>
-                <path class="outfit-fill" d="M126 334C142 303 172 285 199 285H221C248 285 278 303 294 334L314 445H106L126 334Z" />
-                <path class="outfit-shadow" d="M162 314C176 306 192 302 210 302C228 302 244 306 258 314V445H162V314Z" />
-                <path class="shirt-fill" d="M180 289C189 297 198 301 210 301C222 301 231 297 240 289L236 334H184L180 289Z" />
-                <path class="sweater-rib" d="M176 305C187 311 198 314 210 314C222 314 233 311 244 305" />
-                <path class="sleeve-fill" d="M114 340C96 346 84 362 79 384C76 402 82 417 96 422C113 428 126 417 128 399L114 340Z" />
-                <path class="sleeve-fill" d="M306 340C324 346 336 362 341 384C344 402 338 417 324 422C307 428 294 417 292 399L306 340Z" />
-              </g>
-
-              <path class="skin-fill" d="M176 438C180 405 192 388 210 388C228 388 240 405 244 438L247 445H173L176 438Z" />
-              <rect class="skin-fill" x="192" y="252" width="36" height="48" rx="16" />
-
-              <g class="avatar-hair-style" data-style="bun">
-                <ellipse class="hair-fill" cx="210" cy="82" rx="44" ry="30" />
-                <path class="hair-fill" d="M127 189C127 117 162 81 210 81C258 81 293 117 293 189C293 240 286 277 280 311C264 292 245 281 224 278H196C175 281 156 292 140 311C134 277 127 240 127 189Z" />
-                <path class="hair-fill" d="M147 147C159 115 183 97 210 97C237 97 261 115 273 147C256 132 235 125 210 125C185 125 164 132 147 147Z" />
-                <path class="hair-fill" d="M148 175C136 193 130 214 129 241C141 228 150 214 156 199C160 189 158 181 148 175Z" />
-                <path class="hair-fill" d="M272 175C284 193 290 214 291 241C279 228 270 214 264 199C260 189 262 181 272 175Z" />
-                <path class="hair-fill" d="M155 185C141 216 136 255 140 301C144 350 154 391 166 439C174 404 178 364 178 320C178 275 171 229 155 185Z" />
-                <path class="hair-fill" d="M265 185C279 216 284 255 280 301C276 350 266 391 254 439C246 404 242 364 242 320C242 275 249 229 265 185Z" />
-                <path class="hair-detail" d="M171 126C182 115 195 110 210 110C225 110 238 115 249 126" />
-                <path class="hair-detail" d="M161 210C168 254 170 304 166 364" />
-                <path class="hair-detail" d="M259 210C252 254 250 304 254 364" />
-              </g>
-
-              <g class="avatar-hair-style" data-style="waves" hidden>
-                <path class="hair-fill" d="M118 186C118 114 157 81 210 81C263 81 302 114 302 186C302 247 283 292 265 329C254 311 241 300 224 296H196C179 300 166 311 155 329C137 292 118 247 118 186Z" />
-                <path class="hair-fill" d="M138 145C154 116 178 100 210 100C242 100 266 116 282 145C262 132 238 126 210 126C182 126 158 132 138 145Z" />
-                <path class="hair-fill" d="M126 240C108 270 108 320 134 351C144 364 157 370 171 370C159 346 156 324 158 302C160 281 151 258 126 240Z" />
-                <path class="hair-fill" d="M294 240C312 270 312 320 286 351C276 364 263 370 249 370C261 346 264 324 262 302C260 281 269 258 294 240Z" />
-                <path class="hair-detail" d="M158 146C172 135 189 130 210 130C231 130 248 135 262 146" />
-              </g>
-
-              <g class="avatar-hair-style" data-style="swept" hidden>
-                <path class="hair-fill" d="M126 181C126 111 164 81 216 81C261 81 296 108 296 181C296 238 280 282 266 318C255 307 240 299 222 295H194C175 299 159 309 147 323C131 291 126 237 126 181Z" />
-                <path class="hair-fill" d="M152 113C172 94 194 86 222 86C248 86 270 94 286 108C272 87 251 73 224 68C193 62 167 71 147 91C139 99 133 109 130 121C137 118 145 115 152 113Z" />
-                <path class="hair-fill" d="M247 98C266 100 283 108 296 122C290 93 273 73 247 66C213 57 181 66 157 94C177 90 196 91 214 96C226 99 237 100 247 98Z" />
-                <path class="hair-fill" d="M265 206C295 222 313 259 306 314C301 347 284 375 259 391C268 349 268 317 262 292C256 268 255 240 265 206Z" />
-                <path class="hair-detail" d="M193 99C206 95 219 95 231 100" />
-              </g>
-
-              <g class="avatar-hair-style" data-style="bob" hidden>
-                <path class="hair-fill" d="M127 182C127 111 163 81 210 81C257 81 293 111 293 182C293 257 269 306 249 330H171C151 306 127 257 127 182Z" />
-                <path class="hair-fill" d="M145 145C160 116 182 100 210 100C238 100 260 116 275 145C257 132 235 126 210 126C185 126 163 132 145 145Z" />
-                <path class="hair-fill" d="M142 224C127 246 121 276 126 302C129 321 141 334 156 340C149 319 149 298 153 279C157 261 154 241 142 224Z" />
-                <path class="hair-fill" d="M278 224C293 246 299 276 294 302C291 321 279 334 264 340C271 319 271 298 267 279C263 261 266 241 278 224Z" />
-                <path class="hair-detail" d="M162 145C176 135 192 130 210 130C228 130 244 135 258 145" />
-              </g>
-
-              <g class="avatar-head-group">
-                <ellipse class="skin-fill ear-shadow" cx="147" cy="201" rx="14" ry="22" />
-                <ellipse class="skin-fill ear-shadow" cx="273" cy="201" rx="14" ry="22" />
-                <path class="skin-fill" d="M210 94C173 94 147 126 147 188C147 248 177 304 210 304C243 304 273 248 273 188C273 126 247 94 210 94Z" />
-                <path class="face-shadow" d="M170 252C182 270 195 280 210 280C225 280 238 270 250 252C240 261 227 266 210 266C193 266 180 261 170 252Z" />
-                <path class="face-shadow soft-shadow" d="M152 190C159 143 181 116 210 116C239 116 261 143 268 190C262 165 251 146 236 133C228 126 219 123 210 123C201 123 192 126 184 133C169 146 158 165 152 190Z" />
-                <ellipse class="blush-fill" cx="170" cy="229" rx="20" ry="11" />
-                <ellipse class="blush-fill" cx="250" cy="229" rx="20" ry="11" />
-
-                <path class="brow-stroke" d="M164 156C176 148 190 147 202 153" />
-                <path class="brow-stroke" d="M218 153C230 147 244 148 256 156" />
-
-                <g class="avatar-eyes-style" data-eyes="bright">
-                  <g transform="translate(178 191)">
-                    <path class="eye-white" d="M-24 0C-18 -12 -7 -18 7 -18C18 -18 28 -11 32 0C27 11 17 18 5 18C-8 18 -18 12 -24 0Z" />
-                    <ellipse class="iris-fill" cx="2" cy="1" rx="11" ry="11.5" />
-                    <circle class="pupil-fill" cx="3" cy="2" r="5.5" />
-                    <circle class="eye-shine" cx="-2" cy="-3" r="3.2" />
-                  </g>
-                  <g transform="translate(242 191)">
-                    <path class="eye-white" d="M-32 0C-28 -11 -18 -18 -7 -18C7 -18 18 -12 24 0C18 12 8 18 -5 18C-17 18 -27 11 -32 0Z" />
-                    <ellipse class="iris-fill" cx="-2" cy="1" rx="11" ry="11.5" />
-                    <circle class="pupil-fill" cx="-1" cy="2" r="5.5" />
-                    <circle class="eye-shine" cx="-5" cy="-3" r="3.2" />
-                  </g>
-                  <path class="lash-stroke" d="M154 190C163 176 193 174 205 188" />
-                  <path class="lash-stroke" d="M215 188C227 174 257 176 266 190" />
-                </g>
-
-                <g class="avatar-eyes-style" data-eyes="wink" hidden>
-                  <g transform="translate(178 191)">
-                    <path class="eye-white" d="M-24 0C-18 -12 -7 -18 7 -18C18 -18 28 -11 32 0C27 11 17 18 5 18C-8 18 -18 12 -24 0Z" />
-                    <ellipse class="iris-fill" cx="2" cy="1" rx="11" ry="11.5" />
-                    <circle class="pupil-fill" cx="3" cy="2" r="5.5" />
-                    <circle class="eye-shine" cx="-2" cy="-3" r="3.2" />
-                  </g>
-                  <path class="lash-stroke" d="M154 190C163 176 193 174 205 188" />
-                  <path class="wink-stroke" d="M219 193C228 186 244 186 255 193" />
-                </g>
-
-                <g class="avatar-eyes-style" data-eyes="soft" hidden>
-                  <g transform="translate(178 193)">
-                    <path class="eye-white" d="M-22 0C-16 -10 -6 -15 7 -15C17 -15 26 -10 30 0C25 9 16 15 5 15C-7 15 -17 10 -22 0Z" />
-                    <ellipse class="iris-fill" cx="2" cy="1" rx="10" ry="10.5" />
-                    <circle class="pupil-fill" cx="3" cy="2" r="5" />
-                    <circle class="eye-shine" cx="-2" cy="-3" r="3" />
-                  </g>
-                  <g transform="translate(242 193)">
-                    <path class="eye-white" d="M-30 0C-26 -10 -17 -15 -6 -15C7 -15 17 -10 22 0C17 10 8 15 -4 15C-15 15 -24 10 -30 0Z" />
-                    <ellipse class="iris-fill" cx="-2" cy="1" rx="10" ry="10.5" />
-                    <circle class="pupil-fill" cx="-1" cy="2" r="5" />
-                    <circle class="eye-shine" cx="-5" cy="-3" r="3" />
-                  </g>
-                  <path class="lash-stroke" d="M156 190C165 179 193 178 204 188" />
-                  <path class="lash-stroke" d="M216 188C227 178 255 179 264 190" />
-                </g>
-
-                <path class="nose-stroke" d="M209 199C205 211 205 222 210 229C214 232 219 232 223 229" />
-                <path class="mouth-fill" d="M189 249C198 258 208 263 220 263C232 263 242 258 251 249C243 252 233 254 220 254C207 254 197 252 189 249Z" />
-                <path class="lip-line" d="M194 247C201 251 210 253 220 253C230 253 239 251 246 247" />
-              </g>
-
-              <g class="avatar-accessory" data-accessory="bow">
-                <path class="accent-fill" d="M256 127C266 118 281 116 291 125C285 132 279 140 276 150C268 147 261 139 256 127Z" />
-                <path class="accent-fill" d="M281 125C290 116 305 118 314 127C309 139 301 147 293 150C290 140 286 132 281 125Z" />
-                <circle class="accent-strong-fill" cx="285" cy="136" r="8" />
-              </g>
-
-              <g class="avatar-accessory" data-accessory="glasses" hidden>
-                <rect class="glasses-stroke" x="157" y="174" width="45" height="32" rx="15" />
-                <rect class="glasses-stroke" x="219" y="174" width="45" height="32" rx="15" />
-                <path class="glasses-bridge" d="M202 190H219" />
-              </g>
-
-              <g class="avatar-accessory" data-accessory="star" hidden>
-                <path class="star-fill" d="M287 121L292 131L303 132L295 139L297 149L287 144L277 149L279 139L271 132L282 131L287 121Z" />
-              </g>
-
-              <g class="avatar-accessory" data-accessory="none" hidden></g>
-
-              <g class="avatar-hair-bling" data-hair-bling="clip">
-                <rect class="bling-fill" x="274" y="161" width="30" height="12" rx="6" transform="rotate(-20 289 167)" />
-                <rect class="bling-shine" x="279" y="164" width="18" height="4" rx="2" transform="rotate(-20 288 166)" />
-              </g>
-
-              <g class="avatar-hair-bling" data-hair-bling="pearls" hidden>
-                <circle class="pearl-fill" cx="265" cy="145" r="6" />
-                <circle class="pearl-fill" cx="279" cy="138" r="6" />
-                <circle class="pearl-fill" cx="293" cy="145" r="6" />
-              </g>
-
-              <g class="avatar-hair-bling" data-hair-bling="tiara" hidden>
-                <path class="tiara-stroke" d="M165 125C186 109 201 103 210 103C219 103 234 109 255 125" />
-                <path class="tiara-fill" d="M176 125L189 108L200 125H176Z" />
-                <path class="tiara-fill" d="M203 125L210 102L217 125H203Z" />
-                <path class="tiara-fill" d="M220 125L231 108L244 125H220Z" />
-              </g>
-
-              <g class="avatar-hair-bling" data-hair-bling="none" hidden></g>
-
-              <g class="avatar-jewelry" data-jewelry="necklace">
-                <path class="jewel-stroke" d="M173 301C185 319 196 327 210 327C224 327 235 319 247 301" />
-                <circle class="jewel-fill" cx="210" cy="327" r="7" />
-              </g>
-
-              <g class="avatar-jewelry" data-jewelry="cross" hidden>
-                <path class="cross-chain" d="M176 300C188 317 198 325 210 325C222 325 232 317 244 300" />
-                <rect class="cross-fill" x="205" y="324" width="10" height="24" rx="4" />
-                <rect class="cross-fill" x="197" y="331" width="26" height="8" rx="4" />
-              </g>
-
-              <g class="avatar-jewelry" data-jewelry="earrings" hidden>
-                <path class="jewel-stroke" d="M146 206C146 216 149 223 154 227" />
-                <path class="jewel-stroke" d="M274 206C274 216 271 223 266 227" />
-                <circle class="jewel-fill" cx="154" cy="229" r="5" />
-                <circle class="jewel-fill" cx="266" cy="229" r="5" />
-              </g>
-
-              <g class="avatar-jewelry" data-jewelry="none" hidden></g>
-            </g>
-          </svg>
           <p class="avatar-nameplate" id="avatar-nameplate">Stjernevenn</p>
         </div>
       </div>
@@ -247,114 +57,110 @@
         <div class="control-panel">
           <div class="panel-header">
             <h3>Hudtone</h3>
-            <p>Velg grunnfargen p&aring; figuren.</p>
+            <p>Velg hudfargen i Toon Head-stilen.</p>
           </div>
           <div class="swatch-row" data-setting="skin">
-            <button class="swatch-button" data-value="peach" style="--swatch:#f4c4a4;" aria-label="Peach"></button>
-            <button class="swatch-button is-active" data-value="golden" style="--swatch:#d79b72;" aria-label="Golden"></button>
-            <button class="swatch-button" data-value="deep" style="--swatch:#9f6546;" aria-label="Deep"></button>
-            <button class="swatch-button" data-value="rose" style="--swatch:#f1c5c8;" aria-label="Rose"></button>
+            <button class="swatch-button" data-value="soft" style="--swatch:#f1c3a5;" aria-label="Soft"></button>
+            <button class="swatch-button is-active" data-value="warm" style="--swatch:#c68e7a;" aria-label="Warm"></button>
+            <button class="swatch-button" data-value="tan" style="--swatch:#b98e6a;" aria-label="Tan"></button>
+            <button class="swatch-button" data-value="deep" style="--swatch:#a36b4f;" aria-label="Deep"></button>
           </div>
         </div>
 
         <div class="control-panel">
           <div class="panel-header">
-            <h3>H&aring;r</h3>
-            <p>Starter n&aelig;rmere `avatar1`, og kan fortsatt styles videre.</p>
+            <h3>H&aring;r foran</h3>
+            <p>DiceBear Toon Head har egne frisyrer og frontformer.</p>
           </div>
           <div class="choice-row" data-setting="hairStyle">
             <button class="chip-button is-active" data-value="bun">Bun</button>
-            <button class="chip-button" data-value="waves">Bolger</button>
-            <button class="chip-button" data-value="swept">Sideveis</button>
-            <button class="chip-button" data-value="bob">Bob</button>
+            <button class="chip-button" data-value="sideComed">Sideskill</button>
+            <button class="chip-button" data-value="spiky">Spiky</button>
+            <button class="chip-button" data-value="undercut">Undercut</button>
           </div>
           <div class="swatch-row" data-setting="hairColor">
-            <button class="swatch-button" data-value="midnight" style="--swatch:#2f3148;" aria-label="Midnight"></button>
-            <button class="swatch-button is-active" data-value="chestnut" style="--swatch:#6d3f35;" aria-label="Chestnut"></button>
-            <button class="swatch-button" data-value="rosepop" style="--swatch:#ff5fa8;" aria-label="Rose pop"></button>
-            <button class="swatch-button" data-value="teal" style="--swatch:#1298c5;" aria-label="Teal"></button>
+            <button class="swatch-button" data-value="midnight" style="--swatch:#2c1b18;" aria-label="Midnight"></button>
+            <button class="swatch-button is-active" data-value="chestnut" style="--swatch:#724133;" aria-label="Chestnut"></button>
+            <button class="swatch-button" data-value="amber" style="--swatch:#a55728;" aria-label="Amber"></button>
+            <button class="swatch-button" data-value="golden" style="--swatch:#d6b370;" aria-label="Golden"></button>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <div class="panel-header">
+            <h3>Bakh&aring;r</h3>
+            <p>Velg lengden og silhuetten bak.</p>
+          </div>
+          <div class="choice-row" data-setting="rearHair">
+            <button class="chip-button is-active" data-value="longStraight">Lang rett</button>
+            <button class="chip-button" data-value="longWavy">Lang b&oslash;lgete</button>
+            <button class="chip-button" data-value="shoulderHigh">Skulderkort</button>
+            <button class="chip-button" data-value="neckHigh">Nakkekort</button>
           </div>
         </div>
 
         <div class="control-panel">
           <div class="panel-header">
             <h3>&Oslash;yne</h3>
-            <p>Store oyne og mykere uttrykk som i referansene.</p>
+            <p>Dette styrer selve blikket i Toon Head-stilen.</p>
           </div>
           <div class="choice-row" data-setting="eyes">
-            <button class="chip-button is-active" data-value="bright">Vaken</button>
+            <button class="chip-button is-active" data-value="wide">Vaken</button>
+            <button class="chip-button" data-value="happy">Glad</button>
+            <button class="chip-button" data-value="humble">Myk</button>
             <button class="chip-button" data-value="wink">Blunk</button>
-            <button class="chip-button" data-value="soft">Myk</button>
-          </div>
-          <div class="swatch-row" data-setting="eyeColor">
-            <button class="swatch-button is-active" data-value="brown" style="--swatch:#6c4a38;" aria-label="Brown"></button>
-            <button class="swatch-button" data-value="hazel" style="--swatch:#9c7741;" aria-label="Hazel"></button>
-            <button class="swatch-button" data-value="sea" style="--swatch:#279db1;" aria-label="Sea"></button>
-            <button class="swatch-button" data-value="violet" style="--swatch:#6a5cff;" aria-label="Violet"></button>
           </div>
         </div>
 
         <div class="control-panel">
           <div class="panel-header">
-            <h3>Outfit</h3>
-            <p>Standard er genser-looken fra `avatar1`.</p>
+            <h3>Bryn</h3>
+            <p>Sm&aring; endringer som p&aring;virker hele uttrykket.</p>
           </div>
-          <div class="choice-row" data-setting="outfit">
+          <div class="choice-row" data-setting="eyebrows">
+            <button class="chip-button" data-value="happy">Glade</button>
+            <button class="chip-button is-active" data-value="neutral">N&oslash;ytrale</button>
+            <button class="chip-button" data-value="raised">L&oslash;ftede</button>
+            <button class="chip-button" data-value="sad">Myke</button>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <div class="panel-header">
+            <h3>Munn</h3>
+            <p>Bytt smilet uten &aring; lage rare ekstra linjer.</p>
+          </div>
+          <div class="choice-row" data-setting="mouth">
+            <button class="chip-button is-active" data-value="smile">Smil</button>
+            <button class="chip-button" data-value="laugh">Latter</button>
+            <button class="chip-button" data-value="agape">Apen</button>
+            <button class="chip-button" data-value="sad">Rolig</button>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <div class="panel-header">
+            <h3>Kl&aelig;r</h3>
+            <p>Velg antrekk som faktisk finnes i Toon Head.</p>
+          </div>
+          <div class="choice-row" data-setting="clothes">
             <button class="chip-button" data-value="dress">Kjole</button>
-            <button class="chip-button" data-value="blazer">Blazer</button>
-            <button class="chip-button is-active" data-value="top">Topp</button>
+            <button class="chip-button" data-value="openJacket">Jakke</button>
+            <button class="chip-button" data-value="tShirt">T-skjorte</button>
+            <button class="chip-button is-active" data-value="turtleNeck">Genser</button>
           </div>
-          <div class="swatch-row" data-setting="outfitColor">
-            <button class="swatch-button" data-value="berry" style="--swatch:#a0173a;" aria-label="Berry"></button>
-            <button class="swatch-button" data-value="pink" style="--swatch:#ff63ab;" aria-label="Pink"></button>
-            <button class="swatch-button" data-value="navy" style="--swatch:#4452a3;" aria-label="Navy"></button>
-            <button class="swatch-button is-active" data-value="sun" style="--swatch:#ff9e16;" aria-label="Sun"></button>
-          </div>
-        </div>
-
-        <div class="control-panel">
-          <div class="panel-header">
-            <h3>Tilbehor</h3>
-            <p>Smating som ligger naturlig i haren eller rundt ansiktet.</p>
-          </div>
-          <div class="choice-row" data-setting="accessory">
-            <button class="chip-button is-active" data-value="none">Ingen</button>
-            <button class="chip-button" data-value="bow">Sloyfe</button>
-            <button class="chip-button" data-value="glasses">Briller</button>
-            <button class="chip-button" data-value="star">Stjerne</button>
-          </div>
-        </div>
-
-        <div class="control-panel">
-          <div class="panel-header">
-            <h3>Ting i haret</h3>
-            <p>Ekstra pynt for en mer dukkeaktig, ferdig look.</p>
-          </div>
-          <div class="choice-row" data-setting="hairBling">
-            <button class="chip-button" data-value="clip">Clip</button>
-            <button class="chip-button" data-value="pearls">Perler</button>
-            <button class="chip-button" data-value="tiara">Tiara</button>
-            <button class="chip-button is-active" data-value="none">Ingen</button>
-          </div>
-        </div>
-
-        <div class="control-panel">
-          <div class="panel-header">
-            <h3>Smykker</h3>
-            <p>Litt ekstra glam uten at uttrykket blir barnslig.</p>
-          </div>
-          <div class="choice-row" data-setting="jewelry">
-            <button class="chip-button" data-value="necklace">Kjede</button>
-            <button class="chip-button" data-value="cross">Kors</button>
-            <button class="chip-button" data-value="earrings">Oredobber</button>
-            <button class="chip-button is-active" data-value="none">Ingen</button>
+          <div class="swatch-row" data-setting="clothesColor">
+            <button class="swatch-button" data-value="berry" style="--swatch:#b11f1f;" aria-label="Berry"></button>
+            <button class="swatch-button" data-value="pink" style="--swatch:#ec4899;" aria-label="Pink"></button>
+            <button class="swatch-button" data-value="navy" style="--swatch:#0b3286;" aria-label="Navy"></button>
+            <button class="swatch-button is-active" data-value="orange" style="--swatch:#f97316;" aria-label="Orange"></button>
           </div>
         </div>
 
         <div class="control-panel">
           <div class="panel-header">
             <h3>Bakgrunn</h3>
-            <p>Velg scenen rundt avataren.</p>
+            <p>Beholder det rosa universet rundt avataren.</p>
           </div>
           <div class="choice-row" data-setting="background">
             <button class="chip-button is-active" data-value="cotton">Cotton</button>
@@ -368,6 +174,10 @@
           <button class="button primary action-button" id="randomize-button" type="button">Lag tilfeldig avatar</button>
           <button class="button secondary action-button" id="download-button" type="button">Last ned bilde</button>
         </div>
+
+        <p class="avatar-attribution">
+          Avatarstil via <a href="https://www.dicebear.com/styles/toon-head/" target="_blank" rel="noreferrer">DiceBear Toon Head</a>, basert p&aring; ToonHead av <a href="https://www.johanmelin.com" target="_blank" rel="noreferrer">Johan Melin</a>.
+        </p>
         <p class="save-message" id="save-message" aria-live="polite"></p>
       </div>
     </section>

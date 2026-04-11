@@ -1,8 +1,6 @@
 :root {
   --bg: #fff5f9;
-  --bg-strong: #ffe6f0;
-  --panel: rgba(255, 255, 255, 0.72);
-  --panel-strong: #ffd8e7;
+  --panel: rgba(255, 255, 255, 0.74);
   --text: #6f3650;
   --heading: #55253b;
   --accent: #ff99bc;
@@ -78,10 +76,6 @@ body::after {
   border-radius: 28px;
 }
 
-.hero-copy {
-  text-align: left;
-}
-
 .hero-media {
   position: relative;
   padding: 0.55rem;
@@ -107,7 +101,7 @@ body::after {
   bottom: 0.95rem;
   padding: 0.45rem 0.75rem;
   border-radius: 999px;
-  color: white;
+  color: #ffffff;
   font-size: 0.78rem;
   font-weight: 700;
   background: linear-gradient(135deg, #ff5da2 0%, #834dff 100%);
@@ -140,7 +134,6 @@ h2 {
 
 .actions {
   display: flex;
-  justify-content: flex-start;
   gap: 0.7rem;
   flex-wrap: wrap;
   margin-top: 1rem;
@@ -164,7 +157,7 @@ h2 {
 }
 
 .primary {
-  color: white;
+  color: #ffffff;
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
   box-shadow: 0 18px 34px rgba(255, 120, 165, 0.35);
 }
@@ -182,11 +175,6 @@ h2 {
   margin-top: 1.5rem;
   padding: 1.4rem;
   border-radius: 34px;
-}
-
-.avatar-stage,
-.avatar-controls {
-  min-width: 0;
 }
 
 .avatar-stage {
@@ -212,28 +200,22 @@ h2 {
   margin: 0;
   padding: 0.8rem 1rem;
   border-radius: 20px;
-  color: white;
+  color: #ffffff;
   font-weight: 700;
   background: linear-gradient(135deg, #ff7b00 0%, #ff4f87 55%, #834dff 100%);
 }
 
 .avatar-preview {
-  --skin-color: #d79b72;
-  --hair-color: #2f3148;
-  --outfit-color: #a0173a;
-  --eye-color: #6c4a38;
-  --accent-color: #ff6aa8;
   position: relative;
   min-height: 560px;
   overflow: hidden;
   border-radius: 32px;
   border: 1px solid rgba(255, 255, 255, 0.6);
-  background: linear-gradient(180deg, #ffe6f0 0%, #ffd3e5 100%);
 }
 
 .avatar-preview[data-bg="cotton"] {
   background:
-    radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.8), transparent 18%),
+    radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.82), transparent 18%),
     radial-gradient(circle at 78% 18%, rgba(255, 196, 219, 0.88), transparent 22%),
     linear-gradient(180deg, #ffe8f2 0%, #ffd0e6 100%);
 }
@@ -283,214 +265,14 @@ h2 {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0) 68%);
 }
 
-.avatar-canvas {
+.avatar-image {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  filter: drop-shadow(0 24px 34px rgba(85, 37, 59, 0.14));
-}
-
-.avatar-canvas [hidden] {
-  display: none !important;
-}
-
-.avatar-figure {
-  transform-origin: center center;
-}
-
-.skin-fill {
-  fill: var(--skin-color);
-}
-
-.hair-fill {
-  fill: var(--hair-color);
-}
-
-.hair-shadow {
-  opacity: 0.28;
-}
-
-.hair-detail {
-  fill: none;
-  stroke: rgba(62, 26, 31, 0.22);
-  stroke-width: 4;
-  stroke-linecap: round;
-}
-
-.face-shadow {
-  fill: rgba(123, 69, 55, 0.16);
-}
-
-.soft-shadow {
-  opacity: 0.6;
-}
-
-.ear-shadow {
-  opacity: 0.96;
-}
-
-.blush-fill {
-  fill: rgba(245, 130, 155, 0.28);
-}
-
-.eye-white {
-  fill: #ffffff;
-  stroke: rgba(96, 62, 62, 0.45);
-  stroke-width: 2.4;
-}
-
-.iris-fill {
-  fill: var(--eye-color);
-}
-
-.pupil-fill {
-  fill: rgba(34, 26, 31, 0.9);
-}
-
-.eye-shine {
-  fill: rgba(255, 255, 255, 0.95);
-}
-
-.brow-stroke,
-.lash-stroke,
-.wink-stroke,
-.nose-stroke,
-.glasses-bridge,
-.glasses-stroke,
-.jewel-stroke,
-.tiara-stroke {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.brow-stroke {
-  stroke: #4a3841;
-  stroke-width: 5.4;
-}
-
-.lash-stroke {
-  stroke: #40343c;
-  stroke-width: 4.2;
-}
-
-.wink-stroke {
-  stroke: #40343c;
-  stroke-width: 4.4;
-}
-
-.nose-stroke {
-  stroke: rgba(140, 91, 76, 0.64);
-  stroke-width: 3.2;
-}
-
-.mouth-fill {
-  fill: rgba(191, 98, 108, 0.88);
-}
-
-.lip-line {
-  fill: none;
-  stroke: rgba(158, 78, 88, 0.8);
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.outfit-fill {
-  fill: var(--outfit-color);
-}
-
-.outfit-shadow {
-  fill: rgba(58, 27, 43, 0.18);
-}
-
-.outfit-neckline,
-.shirt-fill {
-  fill: rgba(255, 255, 255, 0.92);
-}
-
-.lapel-fill {
-  fill: rgba(255, 255, 255, 0.84);
-}
-
-.sleeve-fill {
-  fill: var(--outfit-color);
-  opacity: 0.92;
-}
-
-.sweater-rib {
-  fill: none;
-  stroke: rgba(163, 92, 8, 0.75);
-  stroke-width: 4;
-  stroke-linecap: round;
-}
-
-.accent-fill {
-  fill: #ff7fb8;
-}
-
-.accent-strong-fill {
-  fill: #ff4e93;
-}
-
-.star-fill {
-  fill: #ffd34f;
-}
-
-.bling-fill {
-  fill: #ffd0e5;
-}
-
-.bling-shine,
-.pearl-fill {
-  fill: rgba(255, 255, 255, 0.96);
-}
-
-.tiara-fill {
-  fill: #f7d36f;
-}
-
-.tiara-stroke {
-  stroke: #f1cb59;
-  stroke-width: 4.5;
-}
-
-.jewel-fill {
-  fill: #ffd34f;
-}
-
-.jewel-stroke {
-  stroke: #f0cf62;
-  stroke-width: 4;
-}
-
-.cross-chain {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.cross-chain {
-  stroke: #e6c876;
-  stroke-width: 4;
-}
-
-.cross-fill {
-  fill: #f4d77e;
-  stroke: #d4b45a;
-  stroke-width: 1.5;
-}
-
-.glasses-stroke {
-  stroke: rgba(79, 57, 70, 0.92);
-  stroke-width: 4;
-}
-
-.glasses-bridge {
-  stroke: rgba(79, 57, 70, 0.92);
-  stroke-width: 4;
+  left: 50%;
+  bottom: 46px;
+  width: min(78%, 340px);
+  transform: translateX(-50%);
+  filter: drop-shadow(0 22px 30px rgba(85, 37, 59, 0.14));
+  pointer-events: none;
 }
 
 .avatar-nameplate {
@@ -501,7 +283,7 @@ h2 {
   padding: 0.75rem 1.2rem;
   border-radius: 999px;
   transform: translateX(-50%);
-  color: white;
+  color: #ffffff;
   font-weight: 700;
   background: rgba(85, 37, 59, 0.82);
   box-shadow: 0 16px 24px rgba(85, 37, 59, 0.18);
@@ -593,9 +375,19 @@ h2 {
   cursor: pointer;
 }
 
+.avatar-attribution,
+.save-message {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.avatar-attribution a {
+  color: var(--heading);
+  font-weight: 700;
+}
+
 .save-message {
   min-height: 1.4rem;
-  margin: 0;
   font-weight: 700;
   color: var(--accent-strong);
 }
@@ -604,11 +396,6 @@ h2 {
   .hero {
     grid-template-columns: 1fr;
     padding: 1.1rem;
-  }
-
-  .hero-badge {
-    right: 0.8rem;
-    bottom: 0.8rem;
   }
 
   .hero-copy {
@@ -637,5 +424,9 @@ h2 {
 
   .avatar-preview {
     min-height: 500px;
+  }
+
+  .avatar-image {
+    width: min(82%, 320px);
   }
 }
