@@ -292,16 +292,6 @@ h2 {
   filter: drop-shadow(0 24px 34px rgba(85, 37, 59, 0.14));
 }
 
-.avatar-reference-base {
-  position: absolute;
-  left: 50%;
-  bottom: 48px;
-  width: min(290px, 74%);
-  transform: translateX(-50%);
-  filter: drop-shadow(0 22px 30px rgba(85, 37, 59, 0.14));
-  pointer-events: none;
-}
-
 .avatar-canvas [hidden] {
   display: none !important;
 }
@@ -320,6 +310,13 @@ h2 {
 
 .hair-shadow {
   opacity: 0.28;
+}
+
+.hair-detail {
+  fill: none;
+  stroke: rgba(62, 26, 31, 0.22);
+  stroke-width: 4;
+  stroke-linecap: round;
 }
 
 .face-shadow {
@@ -393,6 +390,14 @@ h2 {
   fill: rgba(191, 98, 108, 0.88);
 }
 
+.lip-line {
+  fill: none;
+  stroke: rgba(158, 78, 88, 0.8);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .outfit-fill {
   fill: var(--outfit-color);
 }
@@ -413,6 +418,13 @@ h2 {
 .sleeve-fill {
   fill: var(--outfit-color);
   opacity: 0.92;
+}
+
+.sweater-rib {
+  fill: none;
+  stroke: rgba(163, 92, 8, 0.75);
+  stroke-width: 4;
+  stroke-linecap: round;
 }
 
 .accent-fill {

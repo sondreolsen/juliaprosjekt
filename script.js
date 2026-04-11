@@ -40,21 +40,8 @@ const DEFAULT_STATE = {
   background: "cotton"
 };
 
-const REFERENCE_BASE_STATE = {
-  skin: "golden",
-  hairStyle: "bun",
-  hairColor: "chestnut",
-  eyes: "bright",
-  eyeColor: "brown",
-  outfit: "top",
-  outfitColor: "sun",
-  accessory: "none",
-  hairBling: "none",
-  jewelry: "none"
-};
-
-const STORAGE_KEY = "timba-avatar-state-v3";
-const PREVIOUS_STORAGE_KEYS = ["timba-avatar-state-v2", "timba-avatar-state", "julia-avatar-state"];
+const STORAGE_KEY = "timba-avatar-state-v4";
+const PREVIOUS_STORAGE_KEYS = ["timba-avatar-state-v3", "timba-avatar-state-v2", "timba-avatar-state", "julia-avatar-state"];
 
 const LEGACY_MAP = {
   hairStyle: {
@@ -101,7 +88,6 @@ const state = loadState();
 
 const preview = document.getElementById("avatar-preview");
 const avatarCanvas = document.getElementById("avatar-canvas");
-const referenceBase = document.getElementById("avatar-reference-base");
 const score = document.getElementById("style-score");
 const nameInput = document.getElementById("avatar-name");
 const nameplate = document.getElementById("avatar-nameplate");
@@ -173,10 +159,6 @@ function renderAvatar() {
   preview.style.setProperty("--outfit-color", OPTIONS.outfitColor[state.outfitColor]);
   preview.style.setProperty("--eye-color", OPTIONS.eyeColor[state.eyeColor]);
 
-  const useReferenceBase = shouldUseReferenceBase();
-  referenceBase.hidden = !useReferenceBase;
-  avatarCanvas.hidden = useReferenceBase;
-
   toggleVariant('[data-style]', state.hairStyle);
   toggleVariant('[data-eyes]', state.eyes);
   toggleVariant('[data-outfit]', state.outfit);
@@ -186,10 +168,6 @@ function renderAvatar() {
 
   score.textContent = calculateScore();
   persistState();
-}
-
-function shouldUseReferenceBase() {
-  return Object.entries(REFERENCE_BASE_STATE).every(([key, value]) => state[key] === value);
 }
 
 function toggleVariant(selector, activeValue) {
@@ -359,11 +337,6 @@ function buildExportSvg(width, height) {
   const plateWidth = Math.max(210, label.length * 18 + 84);
   const plateX = (width - plateWidth) / 2;
   const svgContent = avatarCanvas.innerHTML;
-  const useReferenceBase = shouldUseReferenceBase();
-  const baseImageUrl = escapeXml(new URL("avatar1.png", window.location.href).href);
-  const avatarMarkup = useReferenceBase
-    ? `<image href="${baseImageUrl}" x="62" y="18" width="296" height="444" preserveAspectRatio="xMidYMid meet" />`
-    : `<svg x="0" y="40" width="${width}" height="${height - 120}" viewBox="0 0 420 520">${svgContent}</svg>`;
 
   return `
     <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
@@ -374,7 +347,9 @@ function buildExportSvg(width, height) {
         ${buildExportStyles()}
       </style>
       ${buildBackgroundMarkup(width, height)}
-      ${avatarMarkup}
+      <svg x="0" y="40" width="${width}" height="${height - 120}" viewBox="0 0 420 520">
+        ${svgContent}
+      </svg>
       <g>
         <rect x="${plateX}" y="${height - 112}" width="${plateWidth}" height="64" rx="32" fill="rgba(85,37,59,0.82)" />
         <text x="${width / 2}" y="${height - 72}" fill="#ffffff" text-anchor="middle" dominant-baseline="middle" font-size="32" font-weight="700" font-family="Quicksand, Arial, sans-serif">${label}</text>
@@ -390,6 +365,7 @@ function buildExportStyles() {
     .skin-fill { fill: ${OPTIONS.skin[state.skin]}; }
     .hair-fill { fill: ${OPTIONS.hairColor[state.hairColor]}; }
     .hair-shadow { opacity: 0.28; }
+    .hair-detail { fill: none; stroke: rgba(62, 26, 31, 0.22); stroke-width: 4; stroke-linecap: round; }
     .face-shadow { fill: rgba(123, 69, 55, 0.16); }
     .soft-shadow { opacity: 0.6; }
     .ear-shadow { opacity: 0.96; }
@@ -404,11 +380,13 @@ function buildExportStyles() {
     .wink-stroke { stroke: #40343c; stroke-width: 4.4; }
     .nose-stroke { stroke: rgba(140, 91, 76, 0.64); stroke-width: 3.2; }
     .mouth-fill { fill: rgba(191, 98, 108, 0.88); }
+    .lip-line { fill: none; stroke: rgba(158, 78, 88, 0.8); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
     .outfit-fill { fill: ${OPTIONS.outfitColor[state.outfitColor]}; }
     .outfit-shadow { fill: rgba(58, 27, 43, 0.18); }
     .outfit-neckline, .shirt-fill { fill: rgba(255, 255, 255, 0.92); }
     .lapel-fill { fill: rgba(255, 255, 255, 0.84); }
     .sleeve-fill { fill: ${lightenColor(OPTIONS.outfitColor[state.outfitColor], 12)}; }
+    .sweater-rib { fill: none; stroke: rgba(163, 92, 8, 0.75); stroke-width: 4; stroke-linecap: round; }
     .accent-fill { fill: #ff7fb8; }
     .accent-strong-fill { fill: #ff4e93; }
     .star-fill { fill: #ffd34f; }
