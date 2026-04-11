@@ -294,10 +294,10 @@ h2 {
   position: absolute;
   top: 34px;
   left: 50%;
-  width: 132px;
-  height: 154px;
+  width: 126px;
+  height: 160px;
   background: var(--skin-color);
-  border-radius: 44% 44% 40% 40%;
+  border-radius: 46% 46% 42% 42%;
   transform: translateX(-50%);
   box-shadow: inset 0 -10px 0 rgba(255, 255, 255, 0.15), 0 12px 20px rgba(76, 33, 46, 0.09);
   z-index: 2;
@@ -324,10 +324,10 @@ h2 {
 
 .avatar-hair {
   position: absolute;
-  top: 8px;
+  top: -2px;
   left: 50%;
-  width: 160px;
-  height: 104px;
+  width: 168px;
+  height: 118px;
   background: var(--hair-color);
   transform: translateX(-50%);
   box-shadow: 0 16px 26px rgba(0, 0, 0, 0.16);
@@ -336,12 +336,12 @@ h2 {
 }
 
 .hair-cloud {
-  border-radius: 46% 46% 32% 32%;
+  border-radius: 46% 46% 34% 34%;
 }
 
 .hair-bob {
-  height: 118px;
-  border-radius: 42% 42% 30% 30%;
+  height: 136px;
+  border-radius: 42% 42% 34% 34%;
 }
 
 .hair-spike {
@@ -380,9 +380,9 @@ h2 {
 .hair-bob::after {
   content: "";
   position: absolute;
-  bottom: -10px;
-  width: 24px;
-  height: 42px;
+  bottom: -34px;
+  width: 26px;
+  height: 78px;
   border-radius: 999px;
   background: inherit;
 }
@@ -407,8 +407,8 @@ h2 {
 }
 
 .avatar-brows span {
-  width: 24px;
-  height: 6px;
+  width: 20px;
+  height: 5px;
   border-radius: 999px;
   background: rgba(89, 38, 58, 0.82);
 }
@@ -455,6 +455,18 @@ h2 {
   z-index: 1;
 }
 
+.avatar-eyes span {
+  box-shadow: 0 -2px 0 rgba(89, 38, 58, 0.18);
+}
+
+.avatar-eyes span:first-child {
+  transform: rotate(-4deg);
+}
+
+.avatar-eyes span:last-child {
+  transform: rotate(4deg);
+}
+
 .eyes-wink span:last-child {
   height: 12px;
   margin-top: 11px;
@@ -491,11 +503,11 @@ h2 {
 .avatar-mouth {
   position: absolute;
   left: 50%;
-  bottom: 20px;
-  width: 32px;
-  height: 16px;
-  border-bottom: 4px solid #d34e73;
-  border-radius: 0 0 24px 24px;
+  bottom: 18px;
+  width: 26px;
+  height: 14px;
+  border-bottom: 3px solid #d34e73;
+  border-radius: 0 0 22px 22px;
   transform: translateX(-50%);
 }
 
@@ -518,10 +530,10 @@ h2 {
 
 .avatar-neck {
   position: absolute;
-  top: 174px;
+  top: 180px;
   left: 50%;
-  width: 28px;
-  height: 30px;
+  width: 24px;
+  height: 28px;
   background: var(--skin-color);
   border-radius: 0 0 12px 12px;
   transform: translateX(-50%);
@@ -558,10 +570,10 @@ h2 {
 
 .avatar-body {
   position: absolute;
-  top: 184px;
+  top: 190px;
   left: 50%;
-  width: 138px;
-  height: 150px;
+  width: 128px;
+  height: 152px;
   background: var(--outfit-color);
   transform: translateX(-50%);
   box-shadow: inset 0 -12px 0 rgba(255, 255, 255, 0.14);
@@ -569,21 +581,22 @@ h2 {
 }
 
 .outfit-dress {
-  width: 156px;
-  height: 188px;
-  border-radius: 28px 28px 14px 14px;
-  clip-path: polygon(24% 0, 76% 0, 100% 100%, 0 100%);
+  width: 166px;
+  height: 198px;
+  border-radius: 26px 26px 16px 16px;
+  clip-path: polygon(28% 0, 72% 0, 100% 100%, 0 100%);
 }
 
 .outfit-hoodie {
-  border-radius: 28px 28px 18px 18px;
+  width: 132px;
+  border-radius: 30px 30px 26px 26px;
 }
 
 .outfit-cape {
-  width: 154px;
-  height: 180px;
-  border-radius: 24px 24px 14px 14px;
-  clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%);
+  width: 164px;
+  height: 190px;
+  border-radius: 24px 24px 18px 18px;
+  clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
 }
 
 .outfit-hoodie::before,

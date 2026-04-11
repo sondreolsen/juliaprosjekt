@@ -335,22 +335,22 @@ function drawBody(context, outfitColor) {
 
   if (state.outfit === "dress") {
     context.beginPath();
-    context.moveTo(-66, 22);
-    context.lineTo(66, 22);
-    context.lineTo(92, 184);
-    context.lineTo(-92, 184);
+    context.moveTo(-48, 22);
+    context.lineTo(48, 22);
+    context.lineTo(102, 194);
+    context.lineTo(-102, 194);
     context.closePath();
     context.fill();
   } else if (state.outfit === "cape") {
     context.beginPath();
-    context.moveTo(-74, 20);
-    context.lineTo(74, 20);
-    context.lineTo(98, 176);
-    context.lineTo(-98, 176);
+    context.moveTo(-54, 20);
+    context.lineTo(54, 20);
+    context.lineTo(100, 186);
+    context.lineTo(-100, 186);
     context.closePath();
     context.fill();
   } else {
-    roundRect(context, -72, 22, 144, 156, 26);
+    roundRect(context, -64, 22, 128, 162, 30);
     context.fill();
   }
 
@@ -373,7 +373,7 @@ function drawNeck(context, skin) {
 function drawHead(context, skin) {
   context.fillStyle = skin;
   context.beginPath();
-  context.ellipse(0, -62, 72, 84, 0, 0, Math.PI * 2);
+  context.ellipse(0, -62, 68, 88, 0, 0, Math.PI * 2);
   context.fill();
 
   context.beginPath();
@@ -387,10 +387,10 @@ function drawHair(context, hairColor) {
 
   if (state.hairStyle === "buns") {
     context.beginPath();
-    context.arc(-58, -150, 30, 0, Math.PI * 2);
-    context.arc(58, -150, 30, 0, Math.PI * 2);
+    context.arc(-56, -154, 26, 0, Math.PI * 2);
+    context.arc(56, -154, 26, 0, Math.PI * 2);
     context.fill();
-    roundRect(context, -60, -146, 120, 70, 28);
+    roundRect(context, -56, -148, 112, 72, 26);
     context.fill();
   } else if (state.hairStyle === "spike") {
     context.beginPath();
@@ -404,16 +404,16 @@ function drawHair(context, hairColor) {
     context.closePath();
     context.fill();
   } else if (state.hairStyle === "bob") {
-    roundRect(context, -78, -146, 156, 90, 30);
+    roundRect(context, -82, -154, 164, 102, 32);
     context.fill();
-    roundRect(context, -72, -92, 30, 60, 18);
-    roundRect(context, 42, -92, 30, 60, 18);
+    roundRect(context, -78, -98, 30, 82, 18);
+    roundRect(context, 48, -98, 30, 82, 18);
     context.fill();
   } else {
-    roundRect(context, -80, -148, 160, 82, 34);
+    roundRect(context, -84, -154, 168, 92, 36);
     context.fill();
-    roundRect(context, -74, -96, 26, 52, 16);
-    roundRect(context, 48, -96, 26, 52, 16);
+    roundRect(context, -78, -100, 28, 78, 18);
+    roundRect(context, 50, -100, 28, 78, 18);
     context.fill();
   }
 }
@@ -423,10 +423,10 @@ function drawFace(context, eyeColor) {
   context.lineWidth = 6;
   context.lineCap = "round";
   context.beginPath();
-  context.moveTo(-36, -92);
-  context.lineTo(-12, -92);
-  context.moveTo(12, -92);
-  context.lineTo(36, -92);
+  context.moveTo(-34, -92);
+  context.lineTo(-16, -92);
+  context.moveTo(16, -92);
+  context.lineTo(34, -92);
   context.stroke();
 
   drawEye(context, -24, -62, eyeColor, state.eyes === "wink" ? "open" : state.eyes);
@@ -449,7 +449,7 @@ function drawFace(context, eyeColor) {
   context.strokeStyle = "#d34e73";
   context.lineWidth = 4;
   context.beginPath();
-  context.arc(0, 18, 16, 0.2, Math.PI - 0.2);
+  context.arc(0, 20, 13, 0.15, Math.PI - 0.15);
   context.stroke();
 }
 
