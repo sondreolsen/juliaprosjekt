@@ -28,15 +28,15 @@ const OPTIONS = {
 const DEFAULT_STATE = {
   name: "Stjernevenn",
   skin: "golden",
-  hairStyle: "braid",
-  hairColor: "midnight",
+  hairStyle: "bun",
+  hairColor: "chestnut",
   eyes: "bright",
   eyeColor: "brown",
-  outfit: "dress",
-  outfitColor: "berry",
+  outfit: "top",
+  outfitColor: "sun",
   accessory: "none",
-  hairBling: "clip",
-  jewelry: "necklace",
+  hairBling: "none",
+  jewelry: "none",
   background: "cotton"
 };
 
@@ -45,8 +45,9 @@ const LEGACY_STORAGE_KEY = "julia-avatar-state";
 
 const LEGACY_MAP = {
   hairStyle: {
+    braid: "bun",
     cloud: "waves",
-    buns: "braid",
+    buns: "bun",
     spike: "swept",
     bob: "bob"
   },
@@ -111,7 +112,7 @@ nameInput.addEventListener("input", () => {
 
 document.getElementById("randomize-button").addEventListener("click", () => {
   state.skin = randomKey(OPTIONS.skin);
-  state.hairStyle = randomFrom(["braid", "waves", "swept", "bob"]);
+  state.hairStyle = randomFrom(["bun", "waves", "swept", "bob"]);
   state.hairColor = randomKey(OPTIONS.hairColor);
   state.eyes = randomFrom(["bright", "wink", "soft"]);
   state.eyeColor = randomKey(OPTIONS.eyeColor);
@@ -192,7 +193,7 @@ function syncButtons(group, activeButton) {
 function calculateScore() {
   let total = 74;
 
-  if (state.hairStyle === "braid" || state.hairStyle === "waves") {
+  if (state.hairStyle === "bun" || state.hairStyle === "waves") {
     total += 4;
   }
   if (state.outfit === "blazer") {
@@ -256,7 +257,7 @@ function normalizeState(saved) {
   if (!OPTIONS.outfitColor[next.outfitColor]) {
     next.outfitColor = DEFAULT_STATE.outfitColor;
   }
-  if (!["braid", "waves", "swept", "bob"].includes(next.hairStyle)) {
+  if (!["bun", "waves", "swept", "bob"].includes(next.hairStyle)) {
     next.hairStyle = DEFAULT_STATE.hairStyle;
   }
   if (!["bright", "wink", "soft"].includes(next.eyes)) {
