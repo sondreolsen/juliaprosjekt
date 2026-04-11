@@ -78,6 +78,9 @@ const LEGACY_MAP = {
     lime: "sun",
     orange: "sun",
     sky: "navy"
+  },
+  jewelry: {
+    choker: "cross"
   }
 };
 
@@ -120,7 +123,7 @@ document.getElementById("randomize-button").addEventListener("click", () => {
   state.outfitColor = randomKey(OPTIONS.outfitColor);
   state.accessory = randomFrom(["none", "bow", "glasses", "star"]);
   state.hairBling = randomFrom(["clip", "pearls", "tiara", "none"]);
-  state.jewelry = randomFrom(["necklace", "choker", "earrings", "none"]);
+  state.jewelry = randomFrom(["necklace", "cross", "earrings", "none"]);
   state.background = randomFrom(["cotton", "sunset", "disco", "ocean"]);
   renderControls();
   renderAvatar();
@@ -255,6 +258,7 @@ function normalizeState(saved) {
   next.hairColor = mapLegacyValue("hairColor", next.hairColor);
   next.eyeColor = mapLegacyValue("eyeColor", next.eyeColor);
   next.outfitColor = mapLegacyValue("outfitColor", next.outfitColor);
+  next.jewelry = mapLegacyValue("jewelry", next.jewelry);
 
   if (!OPTIONS.skin[next.skin]) {
     next.skin = DEFAULT_STATE.skin;
@@ -283,7 +287,7 @@ function normalizeState(saved) {
   if (!["clip", "pearls", "tiara", "none"].includes(next.hairBling)) {
     next.hairBling = DEFAULT_STATE.hairBling;
   }
-  if (!["necklace", "choker", "earrings", "none"].includes(next.jewelry)) {
+  if (!["necklace", "cross", "earrings", "none"].includes(next.jewelry)) {
     next.jewelry = DEFAULT_STATE.jewelry;
   }
   if (!["cotton", "sunset", "disco", "ocean"].includes(next.background)) {
@@ -390,11 +394,8 @@ function buildExportStyles() {
     .tiara-stroke { stroke: #f1cb59; stroke-width: 4.5; }
     .jewel-fill { fill: #ffd34f; }
     .jewel-stroke { stroke: #f0cf62; stroke-width: 4; }
-    .choker-band, .choker-band-soft { fill: none; stroke-linecap: round; }
-    .choker-band { stroke: #d26ab1; stroke-width: 5; }
-    .choker-band-soft { stroke: rgba(255, 232, 245, 0.95); stroke-width: 2.2; }
-    .choker-drop { fill: #f4b6d6; }
-    .choker-stone { fill: #fff2fa; stroke: #d26ab1; stroke-width: 2; }
+    .cross-chain { fill: none; stroke: #e6c876; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+    .cross-fill { fill: #f4d77e; stroke: #d4b45a; stroke-width: 1.5; }
     .glasses-stroke, .glasses-bridge { stroke: rgba(79, 57, 70, 0.92); stroke-width: 4; }
   `;
 }

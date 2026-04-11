@@ -450,30 +450,21 @@ h2 {
   stroke-width: 4;
 }
 
-.choker-band,
-.choker-band-soft {
+.cross-chain {
   fill: none;
   stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.choker-band {
-  stroke: #d26ab1;
-  stroke-width: 5;
+.cross-chain {
+  stroke: #e6c876;
+  stroke-width: 4;
 }
 
-.choker-band-soft {
-  stroke: rgba(255, 232, 245, 0.95);
-  stroke-width: 2.2;
-}
-
-.choker-drop {
-  fill: #f4b6d6;
-}
-
-.choker-stone {
-  fill: #fff2fa;
-  stroke: #d26ab1;
-  stroke-width: 2;
+.cross-fill {
+  fill: #f4d77e;
+  stroke: #d4b45a;
+  stroke-width: 1.5;
 }
 
 .glasses-stroke {
