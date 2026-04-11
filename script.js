@@ -390,7 +390,11 @@ function buildExportStyles() {
     .tiara-stroke { stroke: #f1cb59; stroke-width: 4.5; }
     .jewel-fill { fill: #ffd34f; }
     .jewel-stroke { stroke: #f0cf62; stroke-width: 4; }
-    .choker-fill { fill: #b04dd8; }
+    .choker-band, .choker-band-soft { fill: none; stroke-linecap: round; }
+    .choker-band { stroke: #d26ab1; stroke-width: 5; }
+    .choker-band-soft { stroke: rgba(255, 232, 245, 0.95); stroke-width: 2.2; }
+    .choker-drop { fill: #f4b6d6; }
+    .choker-stone { fill: #fff2fa; stroke: #d26ab1; stroke-width: 2; }
     .glasses-stroke, .glasses-bridge { stroke: rgba(79, 57, 70, 0.92); stroke-width: 4; }
   `;
 }
