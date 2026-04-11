@@ -197,19 +197,126 @@ function randomFrom(values) {
 }
 
 async function downloadAvatarPng() {
-  const width = 720;
-  const height = 960;
-  const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  const context = canvas.getContext("2d");
-
-  drawAvatarPoster(context, width, height);
-
-  const link = document.createElement("a");
   const safeName = (state.name || "timba-avatar").trim().replace(/[^\w\-]+/g, "-").toLowerCase();
-  link.href = canvas.toDataURL("image/png");
-  link.download = `${safeName || "timba-avatar"}.png`;
+
+  try {
+    const pngUrl = await renderPreviewToPngUrl();
+    triggerDownload(pngUrl, `${safeName || "timba-avatar"}.png`);
+    return;
+  } catch {
+    const width = 720;
+    const height = 960;
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const context = canvas.getContext("2d");
+
+    drawAvatarPoster(context, width, height);
+    triggerDownload(canvas.toDataURL("image/png"), `${safeName || "timba-avatar"}.png`);
+  }
+}
+
+async function renderPreviewToPngUrl() {
+  const rect = preview.getBoundingClientRect();
+  const clonedPreview = preview.cloneNode(true);
+  inlineTreeStyles(preview, clonedPreview);
+  clonedPreview.style.margin = "0";
+  clonedPreview.style.width = `${rect.width}px`;
+  clonedPreview.style.height = `${rect.height}px`;
+
+  const svgMarkup = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="${rect.width}" height="${rect.height}">
+      <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="width:${rect.width}px;height:${rect.height}px;">
+          ${clonedPreview.outerHTML}
+        </div>
+      </foreignObject>
+    </svg>
+  `;
+
+  const svgBlob = new Blob([svgMarkup], { type: "image/svg+xml;charset=utf-8" });
+  const svgUrl = URL.createObjectURL(svgBlob);
+
+  try {
+    const image = await loadImage(svgUrl);
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.round(rect.width * 2);
+    canvas.height = Math.round(rect.height * 2);
+    const context = canvas.getContext("2d");
+    context.scale(2, 2);
+    context.drawImage(image, 0, 0, rect.width, rect.height);
+    return canvas.toDataURL("image/png");
+  } finally {
+    URL.revokeObjectURL(svgUrl);
+  }
+}
+
+function inlineTreeStyles(sourceNode, targetNode) {
+  applyComputedStyles(sourceNode, targetNode);
+
+  const sourceChildren = Array.from(sourceNode.children);
+  const targetChildren = Array.from(targetNode.children);
+  sourceChildren.forEach((child, index) => {
+    inlineTreeStyles(child, targetChildren[index]);
+  });
+
+  materializePseudoElement(sourceNode, targetNode, "::before", true);
+  materializePseudoElement(sourceNode, targetNode, "::after", false);
+}
+
+function applyComputedStyles(source, target) {
+  const styles = window.getComputedStyle(source);
+  const cssText = Array.from(styles)
+    .map((property) => `${property}:${styles.getPropertyValue(property)};`)
+    .join("");
+  target.setAttribute("style", cssText);
+}
+
+function materializePseudoElement(source, target, pseudo, prepend) {
+  const pseudoStyles = window.getComputedStyle(source, pseudo);
+  const content = pseudoStyles.getPropertyValue("content");
+  if (!content || content === "none" || content === "normal") {
+    return;
+  }
+
+  const pseudoNode = document.createElement("span");
+  const cssText = Array.from(pseudoStyles)
+    .filter((property) => property !== "content")
+    .map((property) => `${property}:${pseudoStyles.getPropertyValue(property)};`)
+    .join("");
+  pseudoNode.setAttribute("style", cssText);
+  pseudoNode.textContent = normalizePseudoContent(content);
+
+  if (prepend) {
+    target.prepend(pseudoNode);
+  } else {
+    target.append(pseudoNode);
+  }
+}
+
+function normalizePseudoContent(content) {
+  if (content.startsWith("\"") && content.endsWith("\"")) {
+    return content.slice(1, -1);
+  }
+  if (content.startsWith("'") && content.endsWith("'")) {
+    return content.slice(1, -1);
+  }
+  return "";
+}
+
+function loadImage(url) {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve(image);
+    image.onerror = reject;
+    image.src = url;
+  });
+}
+
+function triggerDownload(dataUrl, fileName) {
+  const link = document.createElement("a");
+  link.href = dataUrl;
+  link.download = fileName;
   link.click();
 }
 
