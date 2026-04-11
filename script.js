@@ -201,66 +201,435 @@ function randomFrom(values) {
 }
 
 async function downloadAvatarPng() {
-  const width = preview.offsetWidth;
-  const height = preview.offsetHeight;
-  const clonedPreview = preview.cloneNode(true);
-  clonedPreview.id = "avatar-preview-export";
+  const width = 720;
+  const height = 960;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const context = canvas.getContext("2d");
 
-  const cssText = Array.from(document.styleSheets)
-    .map((sheet) => {
-      try {
-        return Array.from(sheet.cssRules).map((rule) => rule.cssText).join("\n");
-      } catch {
-        return "";
-      }
-    })
-    .join("\n");
+  drawAvatarPoster(context, width, height);
 
-  const svgMarkup = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
-      <foreignObject width="100%" height="100%">
-        <div xmlns="http://www.w3.org/1999/xhtml">
-          <style>${escapeXml(cssText)}</style>
-          ${clonedPreview.outerHTML}
-        </div>
-      </foreignObject>
-    </svg>
-  `;
+  const link = document.createElement("a");
+  const safeName = (state.name || "timba-avatar").trim().replace(/[^\w\-]+/g, "-").toLowerCase();
+  link.href = canvas.toDataURL("image/png");
+  link.download = `${safeName || "timba-avatar"}.png`;
+  link.click();
+}
 
-  const svgBlob = new Blob([svgMarkup], { type: "image/svg+xml;charset=utf-8" });
-  const url = URL.createObjectURL(svgBlob);
+function drawAvatarPoster(context, width, height) {
+  const skin = OPTIONS.skin[state.skin];
+  const hairColor = OPTIONS.hairColor[state.hairColor];
+  const outfitColor = OPTIONS.outfitColor[state.outfitColor];
+  const eyeColor = OPTIONS.eyeColor[state.eyeColor];
 
-  try {
-    const image = await loadImage(url);
-    const canvas = document.createElement("canvas");
-    canvas.width = width * 2;
-    canvas.height = height * 2;
-    const context = canvas.getContext("2d");
-    context.scale(2, 2);
-    context.drawImage(image, 0, 0, width, height);
+  drawBackground(context, width, height);
 
-    const link = document.createElement("a");
-    const safeName = (state.name || "timba-avatar").trim().replace(/[^\w\-]+/g, "-").toLowerCase();
-    link.href = canvas.toDataURL("image/png");
-    link.download = `${safeName || "timba-avatar"}.png`;
-    link.click();
-  } finally {
-    URL.revokeObjectURL(url);
+  context.save();
+  context.translate(width / 2, height / 2 + 30);
+
+  drawLegs(context);
+  drawShoes(context);
+  drawArms(context, skin);
+  drawBody(context, outfitColor);
+  drawNeck(context, skin);
+  drawHead(context, skin);
+  drawHair(context, hairColor);
+  drawFace(context, eyeColor);
+  drawAccessory(context);
+  drawHairBling(context);
+  drawJewelry(context);
+
+  context.restore();
+
+  drawNameplate(context, width, height);
+}
+
+function drawBackground(context, width, height) {
+  let gradient;
+  if (state.background === "sunset") {
+    gradient = context.createLinearGradient(0, 0, 0, height);
+    gradient.addColorStop(0, "#ffd166");
+    gradient.addColorStop(0.5, "#ff8fab");
+    gradient.addColorStop(1, "#b5179e");
+  } else if (state.background === "disco") {
+    gradient = context.createLinearGradient(0, 0, width, height);
+    gradient.addColorStop(0, "#3d348b");
+    gradient.addColorStop(0.45, "#834dff");
+    gradient.addColorStop(1, "#ff4f87");
+  } else if (state.background === "ocean") {
+    gradient = context.createLinearGradient(0, 0, 0, height);
+    gradient.addColorStop(0, "#90e0ef");
+    gradient.addColorStop(0.5, "#48cae4");
+    gradient.addColorStop(1, "#00b4d8");
+  } else {
+    gradient = context.createLinearGradient(0, 0, 0, height);
+    gradient.addColorStop(0, "#ffe6f0");
+    gradient.addColorStop(1, "#ffd6ec");
+  }
+
+  context.fillStyle = gradient;
+  context.fillRect(0, 0, width, height);
+
+  drawGlow(context, width * 0.2, height * 0.18, 110, "rgba(255,255,255,0.6)");
+  drawGlow(context, width * 0.78, height * 0.26, 70, "rgba(255,190,11,0.35)");
+}
+
+function drawGlow(context, x, y, radius, color) {
+  const glow = context.createRadialGradient(x, y, 0, x, y, radius);
+  glow.addColorStop(0, color);
+  glow.addColorStop(1, "rgba(255,255,255,0)");
+  context.fillStyle = glow;
+  context.beginPath();
+  context.arc(x, y, radius, 0, Math.PI * 2);
+  context.fill();
+}
+
+function drawLegs(context) {
+  context.fillStyle = "#cfe6ff";
+  roundRect(context, -52, 158, 34, 156, 18);
+  roundRect(context, 18, 158, 34, 156, 18);
+  context.fill();
+}
+
+function drawShoes(context) {
+  context.fillStyle = "#17191f";
+  roundRect(context, -70, 302, 62, 28, 14);
+  roundRect(context, 8, 302, 62, 28, 14);
+  context.fill();
+
+  context.fillStyle = "#ffffff";
+  roundRect(context, -62, 316, 46, 7, 4);
+  roundRect(context, 16, 316, 46, 7, 4);
+  context.fill();
+
+  context.strokeStyle = "rgba(151,230,0,0.7)";
+  context.lineWidth = 4;
+  context.beginPath();
+  context.moveTo(-66, 323);
+  context.lineTo(-12, 323);
+  context.moveTo(12, 323);
+  context.lineTo(66, 323);
+  context.stroke();
+}
+
+function drawArms(context, skin) {
+  context.fillStyle = skin;
+  context.save();
+  context.translate(-86, 32);
+  context.rotate(0.08);
+  roundRect(context, 0, 0, 26, 160, 13);
+  context.fill();
+  context.restore();
+
+  context.save();
+  context.translate(60, 32);
+  context.rotate(-0.08);
+  roundRect(context, 0, 0, 26, 160, 13);
+  context.fill();
+  context.restore();
+}
+
+function drawBody(context, outfitColor) {
+  context.fillStyle = outfitColor;
+
+  if (state.outfit === "dress") {
+    context.beginPath();
+    context.moveTo(-66, 22);
+    context.lineTo(66, 22);
+    context.lineTo(92, 184);
+    context.lineTo(-92, 184);
+    context.closePath();
+    context.fill();
+  } else if (state.outfit === "cape") {
+    context.beginPath();
+    context.moveTo(-74, 20);
+    context.lineTo(74, 20);
+    context.lineTo(98, 176);
+    context.lineTo(-98, 176);
+    context.closePath();
+    context.fill();
+  } else {
+    roundRect(context, -72, 22, 144, 156, 26);
+    context.fill();
+  }
+
+  context.fillStyle = "rgba(255,255,255,0.78)";
+  context.beginPath();
+  context.moveTo(-34, 18);
+  context.quadraticCurveTo(0, 56, 34, 18);
+  context.lineTo(20, 0);
+  context.lineTo(-20, 0);
+  context.closePath();
+  context.fill();
+}
+
+function drawNeck(context, skin) {
+  context.fillStyle = skin;
+  roundRect(context, -16, -4, 32, 34, 10);
+  context.fill();
+}
+
+function drawHead(context, skin) {
+  context.fillStyle = skin;
+  context.beginPath();
+  context.ellipse(0, -62, 72, 84, 0, 0, Math.PI * 2);
+  context.fill();
+
+  context.beginPath();
+  context.ellipse(-72, -56, 10, 20, 0, 0, Math.PI * 2);
+  context.ellipse(72, -56, 10, 20, 0, 0, Math.PI * 2);
+  context.fill();
+}
+
+function drawHair(context, hairColor) {
+  context.fillStyle = hairColor;
+
+  if (state.hairStyle === "buns") {
+    context.beginPath();
+    context.arc(-58, -150, 30, 0, Math.PI * 2);
+    context.arc(58, -150, 30, 0, Math.PI * 2);
+    context.fill();
+    roundRect(context, -60, -146, 120, 70, 28);
+    context.fill();
+  } else if (state.hairStyle === "spike") {
+    context.beginPath();
+    context.moveTo(-70, -82);
+    context.lineTo(-54, -146);
+    context.lineTo(-22, -108);
+    context.lineTo(0, -160);
+    context.lineTo(24, -114);
+    context.lineTo(52, -144);
+    context.lineTo(72, -82);
+    context.closePath();
+    context.fill();
+  } else if (state.hairStyle === "bob") {
+    roundRect(context, -78, -146, 156, 90, 30);
+    context.fill();
+    roundRect(context, -72, -92, 30, 60, 18);
+    roundRect(context, 42, -92, 30, 60, 18);
+    context.fill();
+  } else {
+    roundRect(context, -80, -148, 160, 82, 34);
+    context.fill();
+    roundRect(context, -74, -96, 26, 52, 16);
+    roundRect(context, 48, -96, 26, 52, 16);
+    context.fill();
   }
 }
 
-function loadImage(url) {
-  return new Promise((resolve, reject) => {
-    const image = new Image();
-    image.onload = () => resolve(image);
-    image.onerror = reject;
-    image.src = url;
-  });
+function drawFace(context, eyeColor) {
+  context.strokeStyle = "rgba(89,38,58,0.82)";
+  context.lineWidth = 6;
+  context.lineCap = "round";
+  context.beginPath();
+  context.moveTo(-36, -92);
+  context.lineTo(-12, -92);
+  context.moveTo(12, -92);
+  context.lineTo(36, -92);
+  context.stroke();
+
+  drawEye(context, -24, -62, eyeColor, state.eyes === "wink" ? "open" : state.eyes);
+  drawEye(context, 24, -62, eyeColor, state.eyes === "wink" ? "wink" : state.eyes);
+
+  context.strokeStyle = "rgba(181,118,107,0.55)";
+  context.lineWidth = 4;
+  context.beginPath();
+  context.moveTo(0, -36);
+  context.lineTo(6, -12);
+  context.lineTo(0, -4);
+  context.stroke();
+
+  context.fillStyle = "rgba(255,118,165,0.26)";
+  context.beginPath();
+  context.ellipse(-42, -10, 14, 8, 0, 0, Math.PI * 2);
+  context.ellipse(42, -10, 14, 8, 0, 0, Math.PI * 2);
+  context.fill();
+
+  context.strokeStyle = "#d34e73";
+  context.lineWidth = 4;
+  context.beginPath();
+  context.arc(0, 18, 16, 0.2, Math.PI - 0.2);
+  context.stroke();
 }
 
-function escapeXml(value) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+function drawEye(context, x, y, eyeColor, mode) {
+  if (mode === "wink") {
+    context.strokeStyle = "rgba(89,38,58,0.85)";
+    context.lineWidth = 4;
+    context.beginPath();
+    context.moveTo(x - 10, y);
+    context.quadraticCurveTo(x, y + 8, x + 10, y);
+    context.stroke();
+    return;
+  }
+
+  context.fillStyle = "#ffffff";
+  context.beginPath();
+  context.ellipse(x, y, 14, mode === "dreamy" ? 14 : 18, 0, 0, Math.PI * 2);
+  context.fill();
+
+  context.strokeStyle = "rgba(89,38,58,0.85)";
+  context.lineWidth = 3;
+  context.stroke();
+
+  context.fillStyle = eyeColor;
+  context.beginPath();
+  context.ellipse(x, y + 2, 8, 11, 0, 0, Math.PI * 2);
+  context.fill();
+
+  context.fillStyle = "#ffffff";
+  context.beginPath();
+  context.arc(x + 2, y - 3, 3, 0, Math.PI * 2);
+  context.fill();
+}
+
+function drawAccessory(context) {
+  if (state.accessory === "none") {
+    return;
+  }
+
+  if (state.accessory === "bow") {
+    context.fillStyle = "#ff4f87";
+    context.save();
+    context.translate(42, -150);
+    context.rotate(0.15);
+    roundRect(context, -24, -8, 18, 16, 6);
+    roundRect(context, 6, -8, 18, 16, 6);
+    context.fill();
+    context.restore();
+    return;
+  }
+
+  if (state.accessory === "glasses") {
+    context.strokeStyle = "#55253b";
+    context.lineWidth = 4;
+    context.beginPath();
+    context.arc(-22, -64, 18, 0, Math.PI * 2);
+    context.arc(22, -64, 18, 0, Math.PI * 2);
+    context.moveTo(-4, -64);
+    context.lineTo(4, -64);
+    context.stroke();
+    return;
+  }
+
+  context.fillStyle = "#ffbe0b";
+  drawStar(context, 60, -150, 18, 9);
+}
+
+function drawHairBling(context) {
+  if (state.hairBling === "none") {
+    return;
+  }
+
+  if (state.hairBling === "clip") {
+    context.save();
+    context.translate(52, -132);
+    context.rotate(-0.3);
+    context.fillStyle = "#ffb3d1";
+    roundRect(context, -18, -6, 36, 12, 6);
+    context.fill();
+    context.restore();
+    return;
+  }
+
+  if (state.hairBling === "pearls") {
+    context.fillStyle = "#ffffff";
+    [-20, 0, 20].forEach((offset) => {
+      context.beginPath();
+      context.arc(offset + 26, -140 + Math.abs(offset) / 8, 6, 0, Math.PI * 2);
+      context.fill();
+    });
+    return;
+  }
+
+  context.strokeStyle = "#f7d36f";
+  context.lineWidth = 4;
+  context.beginPath();
+  context.arc(0, -144, 34, Math.PI, 0);
+  context.stroke();
+  drawStar(context, -18, -154, 8, 4);
+  drawStar(context, 18, -154, 8, 4);
+}
+
+function drawJewelry(context) {
+  if (state.jewelry === "none") {
+    return;
+  }
+
+  if (state.jewelry === "choker") {
+    context.fillStyle = "#b5179e";
+    roundRect(context, -28, 10, 56, 10, 5);
+    context.fill();
+    return;
+  }
+
+  if (state.jewelry === "earrings") {
+    context.strokeStyle = "#ffd84d";
+    context.lineWidth = 4;
+    context.beginPath();
+    context.arc(-76, -52, 8, 0, Math.PI);
+    context.arc(76, -52, 8, 0, Math.PI);
+    context.stroke();
+    return;
+  }
+
+  context.strokeStyle = "#f5d96b";
+  context.lineWidth = 4;
+  context.beginPath();
+  context.arc(0, 18, 34, 0.2, Math.PI - 0.2);
+  context.stroke();
+  context.fillStyle = "#ffd84d";
+  context.beginPath();
+  context.arc(0, 52, 7, 0, Math.PI * 2);
+  context.fill();
+}
+
+function drawNameplate(context, width, height) {
+  const label = state.name || "Stjernevenn";
+  context.font = "bold 32px Quicksand, sans-serif";
+  const textWidth = context.measureText(label).width;
+  const plateWidth = Math.max(170, textWidth + 56);
+  const x = (width - plateWidth) / 2;
+  const y = height - 84;
+
+  context.fillStyle = "rgba(85,37,59,0.82)";
+  roundRect(context, x, y, plateWidth, 56, 28);
+  context.fill();
+
+  context.fillStyle = "#ffffff";
+  context.textAlign = "center";
+  context.textBaseline = "middle";
+  context.fillText(label, width / 2, y + 30);
+}
+
+function roundRect(context, x, y, width, height, radius) {
+  context.beginPath();
+  context.moveTo(x + radius, y);
+  context.lineTo(x + width - radius, y);
+  context.quadraticCurveTo(x + width, y, x + width, y + radius);
+  context.lineTo(x + width, y + height - radius);
+  context.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+  context.lineTo(x + radius, y + height);
+  context.quadraticCurveTo(x, y + height, x, y + height - radius);
+  context.lineTo(x, y + radius);
+  context.quadraticCurveTo(x, y, x + radius, y);
+  context.closePath();
+}
+
+function drawStar(context, x, y, outerRadius, innerRadius) {
+  context.beginPath();
+  for (let i = 0; i < 10; i += 1) {
+    const angle = -Math.PI / 2 + (Math.PI / 5) * i;
+    const radius = i % 2 === 0 ? outerRadius : innerRadius;
+    const pointX = x + Math.cos(angle) * radius;
+    const pointY = y + Math.sin(angle) * radius;
+    if (i === 0) {
+      context.moveTo(pointX, pointY);
+    } else {
+      context.lineTo(pointX, pointY);
+    }
+  }
+  context.closePath();
+  context.fill();
 }
