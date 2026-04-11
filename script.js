@@ -40,8 +40,8 @@ const DEFAULT_STATE = {
   background: "cotton"
 };
 
-const STORAGE_KEY = "timba-avatar-state";
-const LEGACY_STORAGE_KEY = "julia-avatar-state";
+const STORAGE_KEY = "timba-avatar-state-v2";
+const PREVIOUS_STORAGE_KEYS = ["timba-avatar-state", "julia-avatar-state"];
 
 const LEGACY_MAP = {
   hairStyle: {
@@ -227,12 +227,23 @@ function persistState() {
 
 function loadState() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
-    const saved = raw ? JSON.parse(raw) : {};
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) {
+      clearPreviousSavedState();
+      return { ...DEFAULT_STATE };
+    }
+
+    const saved = JSON.parse(raw);
     return normalizeState(saved);
   } catch {
     return { ...DEFAULT_STATE };
   }
+}
+
+function clearPreviousSavedState() {
+  PREVIOUS_STORAGE_KEYS.forEach((key) => {
+    localStorage.removeItem(key);
+  });
 }
 
 function normalizeState(saved) {
