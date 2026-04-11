@@ -57,6 +57,7 @@ const score = document.getElementById("style-score");
 const nameInput = document.getElementById("avatar-name");
 const nameplate = document.getElementById("avatar-nameplate");
 const saveMessage = document.getElementById("save-message");
+const downloadButton = document.getElementById("download-button");
 
 document.querySelectorAll("[data-setting]").forEach((group) => {
   group.addEventListener("click", (event) => {
@@ -97,6 +98,22 @@ document.getElementById("randomize-button").addEventListener("click", () => {
 document.getElementById("save-button").addEventListener("click", () => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   saveMessage.textContent = "Avataren er lagret på denne enheten.";
+});
+
+downloadButton.addEventListener("click", async () => {
+  const originalLabel = downloadButton.textContent;
+  downloadButton.disabled = true;
+  downloadButton.textContent = "Lager PNG...";
+
+  try {
+    await downloadAvatarPng();
+    saveMessage.textContent = "PNG lastet ned.";
+  } catch {
+    saveMessage.textContent = "Kunne ikke lage PNG i denne nettleseren.";
+  } finally {
+    downloadButton.disabled = false;
+    downloadButton.textContent = originalLabel;
+  }
 });
 
 renderControls();
@@ -181,4 +198,69 @@ function randomKey(object) {
 
 function randomFrom(values) {
   return values[Math.floor(Math.random() * values.length)];
+}
+
+async function downloadAvatarPng() {
+  const width = preview.offsetWidth;
+  const height = preview.offsetHeight;
+  const clonedPreview = preview.cloneNode(true);
+  clonedPreview.id = "avatar-preview-export";
+
+  const cssText = Array.from(document.styleSheets)
+    .map((sheet) => {
+      try {
+        return Array.from(sheet.cssRules).map((rule) => rule.cssText).join("\n");
+      } catch {
+        return "";
+      }
+    })
+    .join("\n");
+
+  const svgMarkup = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
+      <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          <style>${escapeXml(cssText)}</style>
+          ${clonedPreview.outerHTML}
+        </div>
+      </foreignObject>
+    </svg>
+  `;
+
+  const svgBlob = new Blob([svgMarkup], { type: "image/svg+xml;charset=utf-8" });
+  const url = URL.createObjectURL(svgBlob);
+
+  try {
+    const image = await loadImage(url);
+    const canvas = document.createElement("canvas");
+    canvas.width = width * 2;
+    canvas.height = height * 2;
+    const context = canvas.getContext("2d");
+    context.scale(2, 2);
+    context.drawImage(image, 0, 0, width, height);
+
+    const link = document.createElement("a");
+    const safeName = (state.name || "timba-avatar").trim().replace(/[^\w\-]+/g, "-").toLowerCase();
+    link.href = canvas.toDataURL("image/png");
+    link.download = `${safeName || "timba-avatar"}.png`;
+    link.click();
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}
+
+function loadImage(url) {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve(image);
+    image.onerror = reject;
+    image.src = url;
+  });
+}
+
+function escapeXml(value) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
