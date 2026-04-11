@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Babyrosa</title>
+  <title>Julia sitt avatarspill</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
@@ -13,55 +13,197 @@
   <main class="page">
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">Babyrosa univers</p>
-        <h1>En rosa nettside med myk, søt og luftig stil.</h1>
+        <p class="eyebrow">Julia sitt rosa univers</p>
+        <h1>Lag en avatar med sterke farger, rosa detaljer og helt din egen stil.</h1>
         <p class="intro">
-          Denne siden er bygget for å føles lett, varm og litt drømmende, med babyrosa toner
-          over hele opplevelsen.
+          Denne siden er nå både babyrosa og leken: besøkende kan bygge sin egen avatar,
+          mikse sterke farger og lagre favoritten sin direkte i nettleseren.
         </p>
         <div class="actions">
-          <a class="button primary" href="#kort">Se stemningen</a>
-          <a class="button secondary" href="#farger">Fargepalett</a>
+          <a class="button primary" href="#avatarspill">Lag avatar</a>
+          <a class="button secondary" href="#farger">Se paletten</a>
         </div>
       </div>
       <div class="hero-media">
         <img src="timbabilde.jpg" alt="Timbabilde" class="hero-image">
+        <div class="hero-badge">Nytt: Avatarspill</div>
       </div>
     </section>
 
     <section class="card-grid" id="kort">
       <article class="card">
         <span class="card-number">01</span>
-        <h2>Myke former</h2>
-        <p>Runde hjørner, lette skygger og store luftrom gir et vennlig uttrykk.</p>
+        <h2>Lag din figur</h2>
+        <p>Bytt hår, øyne, klær og bakgrunn til avataren føles helt riktig.</p>
       </article>
       <article class="card">
         <span class="card-number">02</span>
-        <h2>Babyrosa toner</h2>
-        <p>Bakgrunn, paneler og detaljer holder seg i lyse rosa nyanser uten å bli tunge.</p>
+        <h2>Farger som popper</h2>
+        <p>Paletten bruker både babyrosa, neonaktige aksenter og saftige kontraster.</p>
       </article>
       <article class="card">
         <span class="card-number">03</span>
-        <h2>Litt glød</h2>
-        <p>Subtile gradienter og små dekorformer gjør at siden føles mer levende.</p>
+        <h2>Lite spill</h2>
+        <p>Bruk randomizer, gi avataren navn og lagre den som din egen favoritt.</p>
       </article>
+    </section>
+
+    <section class="avatar-game" id="avatarspill">
+      <div class="avatar-stage">
+        <div class="avatar-stage-header">
+          <div>
+            <p class="eyebrow">Avatarspill</p>
+            <h2>Design en superstilig avatar</h2>
+          </div>
+          <p class="avatar-score">Stilpoeng: <span id="style-score">84</span></p>
+        </div>
+
+        <div class="avatar-preview" id="avatar-preview" data-bg="cotton">
+          <div class="sparkles sparkles-a"></div>
+          <div class="sparkles sparkles-b"></div>
+          <div class="avatar-character">
+            <div class="avatar-hair" id="avatar-hair"></div>
+            <div class="avatar-head" id="avatar-head">
+              <div class="avatar-eyes" id="avatar-eyes">
+                <span></span>
+                <span></span>
+              </div>
+              <div class="avatar-mouth"></div>
+            </div>
+            <div class="avatar-accessory" id="avatar-accessory"></div>
+            <div class="avatar-body" id="avatar-body"></div>
+          </div>
+          <p class="avatar-nameplate" id="avatar-nameplate">Stjernevenn</p>
+        </div>
+      </div>
+
+      <div class="avatar-controls">
+        <div class="control-panel">
+          <label class="input-label" for="avatar-name">Navn på avataren</label>
+          <input id="avatar-name" class="name-input" type="text" maxlength="18" value="Stjernevenn">
+        </div>
+
+        <div class="control-panel">
+          <div class="panel-header">
+            <h3>Hudtone</h3>
+            <p>Velg grunnfargen på figuren.</p>
+          </div>
+          <div class="swatch-row" data-setting="skin">
+            <button class="swatch-button is-active" data-value="peach" style="--swatch:#f6c7a4;" aria-label="Peach"></button>
+            <button class="swatch-button" data-value="golden" style="--swatch:#d9966d;" aria-label="Golden"></button>
+            <button class="swatch-button" data-value="espresso" style="--swatch:#7a4a2f;" aria-label="Espresso"></button>
+            <button class="swatch-button" data-value="rose" style="--swatch:#f0b6c1;" aria-label="Rose"></button>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <div class="panel-header">
+            <h3>Hår</h3>
+            <p>Bytt både fasong og farge.</p>
+          </div>
+          <div class="choice-row" data-setting="hairStyle">
+            <button class="chip-button is-active" data-value="cloud">Sky</button>
+            <button class="chip-button" data-value="bob">Bob</button>
+            <button class="chip-button" data-value="spike">Pop</button>
+            <button class="chip-button" data-value="buns">Buns</button>
+          </div>
+          <div class="swatch-row" data-setting="hairColor">
+            <button class="swatch-button is-active" data-value="pink" style="--swatch:#ff64b4;" aria-label="Pink"></button>
+            <button class="swatch-button" data-value="violet" style="--swatch:#834dff;" aria-label="Violet"></button>
+            <button class="swatch-button" data-value="cyan" style="--swatch:#00cfff;" aria-label="Cyan"></button>
+            <button class="swatch-button" data-value="sun" style="--swatch:#ffb703;" aria-label="Sun"></button>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <div class="panel-header">
+            <h3>Øyne</h3>
+            <p>Små detaljer som endrer hele uttrykket.</p>
+          </div>
+          <div class="choice-row" data-setting="eyes">
+            <button class="chip-button is-active" data-value="sparkle">Sparkle</button>
+            <button class="chip-button" data-value="wink">Wink</button>
+            <button class="chip-button" data-value="dreamy">Dreamy</button>
+          </div>
+          <div class="swatch-row" data-setting="eyeColor">
+            <button class="swatch-button is-active" data-value="berry" style="--swatch:#ff4f87;" aria-label="Berry"></button>
+            <button class="swatch-button" data-value="mint" style="--swatch:#00d4b4;" aria-label="Mint"></button>
+            <button class="swatch-button" data-value="night" style="--swatch:#3d348b;" aria-label="Night"></button>
+            <button class="swatch-button" data-value="gold" style="--swatch:#ffbe0b;" aria-label="Gold"></button>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <div class="panel-header">
+            <h3>Outfit</h3>
+            <p>Velg silhuett og signaturfarge.</p>
+          </div>
+          <div class="choice-row" data-setting="outfit">
+            <button class="chip-button is-active" data-value="dress">Dress</button>
+            <button class="chip-button" data-value="hoodie">Hoodie</button>
+            <button class="chip-button" data-value="cape">Cape</button>
+          </div>
+          <div class="swatch-row" data-setting="outfitColor">
+            <button class="swatch-button is-active" data-value="bubblegum" style="--swatch:#ff5da2;" aria-label="Bubblegum"></button>
+            <button class="swatch-button" data-value="lime" style="--swatch:#97e600;" aria-label="Lime"></button>
+            <button class="swatch-button" data-value="orange" style="--swatch:#ff7b00;" aria-label="Orange"></button>
+            <button class="swatch-button" data-value="sky" style="--swatch:#5ac8fa;" aria-label="Sky"></button>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <div class="panel-header">
+            <h3>Tilbehør</h3>
+            <p>Litt ekstra dramatikk.</p>
+          </div>
+          <div class="choice-row" data-setting="accessory">
+            <button class="chip-button is-active" data-value="bow">Sløyfe</button>
+            <button class="chip-button" data-value="glasses">Briller</button>
+            <button class="chip-button" data-value="star">Stjerne</button>
+            <button class="chip-button" data-value="none">Ingen</button>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <div class="panel-header">
+            <h3>Bakgrunn</h3>
+            <p>Velg scenen rundt avataren.</p>
+          </div>
+          <div class="choice-row" data-setting="background">
+            <button class="chip-button is-active" data-value="cotton">Cotton</button>
+            <button class="chip-button" data-value="sunset">Sunset</button>
+            <button class="chip-button" data-value="disco">Disco</button>
+            <button class="chip-button" data-value="ocean">Ocean</button>
+          </div>
+        </div>
+
+        <div class="game-actions">
+          <button class="button primary action-button" id="randomize-button" type="button">Lag tilfeldig avatar</button>
+          <button class="button secondary action-button" id="save-button" type="button">Lagre avataren min</button>
+        </div>
+        <p class="save-message" id="save-message" aria-live="polite"></p>
+      </div>
     </section>
 
     <section class="palette" id="farger">
       <div class="palette-text">
         <p class="eyebrow">Fargepalett</p>
-        <h2>Alt dreier seg rundt babyrosa.</h2>
+        <h2>Rosa møter sterke pops av farge.</h2>
         <p>
-          Paletten kombinerer krem, pudderrosa og litt sterkere rosa aksenter for å holde
-          uttrykket søtt, men fortsatt tydelig.
+          Paletten kombinerer krem, pudderrosa, godterirosa og klare kontraster for å holde
+          uttrykket søtt, lekent og mer spillaktig.
         </p>
       </div>
       <div class="swatches">
         <div class="swatch soft">#FFE6F0</div>
         <div class="swatch blush">#FFC7DA</div>
         <div class="swatch candy">#FF99BC</div>
+        <div class="swatch pop">#834DFF</div>
+        <div class="swatch burst">#00CFFF</div>
+        <div class="swatch zing">#FFB703</div>
       </div>
     </section>
   </main>
+  <script src="script.js"></script>
 </body>
 </html>
