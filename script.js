@@ -101,10 +101,14 @@ function renderAvatar() {
   nameplate.textContent = state.name;
   nameInput.value = state.name;
 
+  preview.style.setProperty("--skin-color", OPTIONS.skin[state.skin]);
+  preview.style.setProperty("--hair-color", OPTIONS.hairColor[state.hairColor]);
+  preview.style.setProperty("--outfit-color", OPTIONS.outfitColor[state.outfitColor]);
+  preview.style.setProperty("--eye-color", OPTIONS.eyeColor[state.eyeColor]);
+
   head.style.background = OPTIONS.skin[state.skin];
   hair.style.background = OPTIONS.hairColor[state.hairColor];
   body.style.background = OPTIONS.outfitColor[state.outfitColor];
-  eyes.style.setProperty("--eye-color", OPTIONS.eyeColor[state.eyeColor]);
 
   hair.className = `avatar-hair hair-${state.hairStyle}`;
   eyes.className = `avatar-eyes eyes-${state.eyes}`;

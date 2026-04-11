@@ -218,6 +218,10 @@ h2 {
 }
 
 .avatar-preview {
+  --skin-color: #f6c7a4;
+  --hair-color: #ff64b4;
+  --outfit-color: #ff5da2;
+  --eye-color: #ff4f87;
   position: relative;
   min-height: 560px;
   overflow: hidden;
@@ -280,45 +284,67 @@ h2 {
 .avatar-character {
   position: absolute;
   left: 50%;
-  bottom: 42px;
+  bottom: 34px;
   width: 260px;
-  height: 390px;
+  height: 438px;
   transform: translateX(-50%);
 }
 
 .avatar-head {
   position: absolute;
-  top: 68px;
+  top: 34px;
   left: 50%;
-  width: 146px;
+  width: 132px;
   height: 154px;
-  border-radius: 48% 48% 44% 44%;
+  background: var(--skin-color);
+  border-radius: 44% 44% 40% 40%;
   transform: translateX(-50%);
-  box-shadow: inset 0 -10px 0 rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 -10px 0 rgba(255, 255, 255, 0.15), 0 12px 20px rgba(76, 33, 46, 0.09);
+}
+
+.avatar-head::before,
+.avatar-head::after {
+  content: "";
+  position: absolute;
+  top: 64px;
+  width: 18px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--skin-color);
+}
+
+.avatar-head::before {
+  left: -8px;
+}
+
+.avatar-head::after {
+  right: -8px;
 }
 
 .avatar-hair {
   position: absolute;
-  top: 24px;
+  top: 4px;
   left: 50%;
-  width: 176px;
-  height: 140px;
+  width: 160px;
+  height: 142px;
+  background: var(--hair-color);
   transform: translateX(-50%);
-  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 16px 26px rgba(0, 0, 0, 0.16);
+  z-index: 2;
 }
 
 .hair-cloud {
-  border-radius: 52% 48% 42% 44%;
+  border-radius: 44% 44% 52% 52%;
 }
 
 .hair-bob {
-  height: 150px;
-  border-radius: 44% 44% 36% 36%;
+  height: 154px;
+  border-radius: 40% 40% 34% 34%;
 }
 
 .hair-spike {
-  height: 130px;
-  clip-path: polygon(0% 82%, 8% 32%, 20% 68%, 30% 18%, 42% 64%, 54% 10%, 66% 62%, 78% 20%, 92% 70%, 100% 84%, 100% 100%, 0 100%);
+  height: 126px;
+  clip-path: polygon(0% 88%, 6% 48%, 18% 18%, 30% 42%, 44% 0%, 58% 34%, 72% 10%, 86% 42%, 100% 86%, 100% 100%, 0 100%);
 }
 
 .hair-buns::before,
@@ -340,86 +366,315 @@ h2 {
   right: -10px;
 }
 
-.avatar-eyes {
-  --eye-color: #ff4f87;
+.hair-cloud::before,
+.hair-cloud::after,
+.hair-bob::before,
+.hair-bob::after {
+  content: "";
   position: absolute;
-  top: 60px;
+  bottom: 10px;
+  width: 28px;
+  height: 56px;
+  border-radius: 999px;
+  background: inherit;
+}
+
+.hair-cloud::before,
+.hair-bob::before {
+  left: 8px;
+}
+
+.hair-cloud::after,
+.hair-bob::after {
+  right: 8px;
+}
+
+.avatar-brows {
+  position: absolute;
+  top: 34px;
   left: 50%;
   display: flex;
-  gap: 24px;
+  gap: 28px;
+  transform: translateX(-50%);
+}
+
+.avatar-brows span {
+  width: 24px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(89, 38, 58, 0.82);
+}
+
+.avatar-eyes {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  display: flex;
+  gap: 22px;
   transform: translateX(-50%);
 }
 
 .avatar-eyes span {
   position: relative;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--eye-color);
-  box-shadow: inset -3px -4px 0 rgba(0, 0, 0, 0.18);
+  width: 24px;
+  height: 30px;
+  border-radius: 46% 46% 50% 50%;
+  background: white;
+  border: 2px solid rgba(89, 38, 58, 0.85);
 }
 
 .avatar-eyes span::after {
   content: "";
   position: absolute;
-  top: 3px;
-  left: 4px;
-  width: 7px;
-  height: 7px;
+  top: 5px;
+  left: 5px;
+  width: 14px;
+  height: 18px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--eye-color);
+  box-shadow: inset -3px -4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.avatar-eyes span::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 1;
 }
 
 .eyes-wink span:last-child {
-  height: 7px;
-  margin-top: 7px;
+  height: 12px;
+  margin-top: 11px;
   border-radius: 999px;
-  box-shadow: none;
+  background: transparent;
+  border-width: 0 0 3px 0;
 }
 
 .eyes-wink span:last-child::after {
   display: none;
 }
 
+.eyes-wink span:last-child::before {
+  display: none;
+}
+
 .eyes-dreamy span {
   width: 24px;
-  height: 16px;
-  border-radius: 50% 50% 45% 45%;
+  height: 26px;
+}
+
+.avatar-nose {
+  position: absolute;
+  left: 50%;
+  top: 88px;
+  width: 14px;
+  height: 22px;
+  border-right: 3px solid rgba(181, 118, 107, 0.55);
+  border-bottom: 3px solid rgba(181, 118, 107, 0.55);
+  border-radius: 0 0 12px 0;
+  transform: translateX(-50%) rotate(10deg);
 }
 
 .avatar-mouth {
   position: absolute;
   left: 50%;
-  bottom: 34px;
-  width: 28px;
-  height: 14px;
-  border-bottom: 4px solid #a53b5e;
-  border-radius: 0 0 20px 20px;
+  bottom: 20px;
+  width: 32px;
+  height: 16px;
+  border-bottom: 4px solid #d34e73;
+  border-radius: 0 0 24px 24px;
   transform: translateX(-50%);
+}
+
+.avatar-blush {
+  position: absolute;
+  top: 100px;
+  width: 22px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 118, 165, 0.26);
+}
+
+.avatar-blush-left {
+  left: 14px;
+}
+
+.avatar-blush-right {
+  right: 14px;
+}
+
+.avatar-neck {
+  position: absolute;
+  top: 174px;
+  left: 50%;
+  width: 28px;
+  height: 30px;
+  background: var(--skin-color);
+  border-radius: 0 0 12px 12px;
+  transform: translateX(-50%);
+}
+
+.avatar-arms {
+  position: absolute;
+  top: 188px;
+  left: 50%;
+  width: 220px;
+  height: 156px;
+  transform: translateX(-50%);
+}
+
+.arm {
+  position: absolute;
+  top: 2px;
+  width: 24px;
+  height: 132px;
+  background: var(--skin-color);
+  border-radius: 999px;
+  box-shadow: inset -4px -6px 0 rgba(255, 255, 255, 0.16);
+}
+
+.arm-left {
+  left: 20px;
+  transform: rotate(8deg);
+}
+
+.arm-right {
+  right: 20px;
+  transform: rotate(-8deg);
 }
 
 .avatar-body {
   position: absolute;
-  bottom: 0;
+  top: 184px;
   left: 50%;
-  width: 190px;
-  height: 190px;
+  width: 138px;
+  height: 150px;
+  background: var(--outfit-color);
   transform: translateX(-50%);
   box-shadow: inset 0 -12px 0 rgba(255, 255, 255, 0.14);
+  z-index: 1;
 }
 
 .outfit-dress {
-  border-radius: 34% 34% 18% 18%;
-  clip-path: polygon(22% 0, 78% 0, 100% 100%, 0 100%);
+  width: 156px;
+  height: 188px;
+  border-radius: 28px 28px 14px 14px;
+  clip-path: polygon(24% 0, 76% 0, 100% 100%, 0 100%);
 }
 
 .outfit-hoodie {
-  border-radius: 30px 30px 24px 24px;
+  border-radius: 28px 28px 18px 18px;
 }
 
 .outfit-cape {
-  border-radius: 26px 26px 12px 12px;
-  clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
+  width: 154px;
+  height: 180px;
+  border-radius: 24px 24px 14px 14px;
+  clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%);
+}
+
+.outfit-hoodie::before,
+.outfit-dress::before,
+.outfit-cape::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  width: 68px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.76);
+  border-radius: 0 0 22px 22px;
+  transform: translateX(-50%);
+}
+
+.outfit-cape::after {
+  content: "";
+  position: absolute;
+  inset: 18px 12px auto;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.avatar-legs {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  width: 120px;
+  height: 132px;
+  transform: translateX(-50%);
+}
+
+.leg {
+  position: absolute;
+  bottom: 16px;
+  width: 34px;
+  height: 108px;
+  background: linear-gradient(180deg, #d7edff 0%, #c8e2ff 100%);
+  border-radius: 18px;
+  border: 2px solid rgba(98, 126, 173, 0.15);
+}
+
+.leg::after {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 7px;
+  width: 16px;
+  height: 10px;
+  border-radius: 6px;
+  border: 2px solid rgba(140, 173, 221, 0.45);
+}
+
+.leg-left {
+  left: 18px;
+}
+
+.leg-right {
+  right: 18px;
+}
+
+.avatar-shoes {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 138px;
+  height: 40px;
+  transform: translateX(-50%);
+}
+
+.shoe {
+  position: absolute;
+  bottom: 0;
+  width: 48px;
+  height: 22px;
+  border-radius: 18px 18px 10px 10px;
+  background: linear-gradient(180deg, #2d2f37 0%, #101114 100%);
+  box-shadow: inset 0 -4px 0 rgba(151, 230, 0, 0.5);
+}
+
+.shoe::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  bottom: 3px;
+  width: 36px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.shoe-left {
+  left: 10px;
+}
+
+.shoe-right {
+  right: 10px;
 }
 
 .avatar-accessory {
@@ -428,7 +683,7 @@ h2 {
 }
 
 .accessory-bow {
-  top: 46px;
+  top: 28px;
   left: 54%;
   width: 56px;
   height: 26px;
@@ -457,7 +712,7 @@ h2 {
 }
 
 .accessory-glasses {
-  top: 118px;
+  top: 90px;
   left: 50%;
   width: 92px;
   height: 24px;
@@ -488,7 +743,7 @@ h2 {
 }
 
 .accessory-star {
-  top: 44px;
+  top: 28px;
   right: 48px;
   width: 42px;
   height: 42px;
@@ -644,5 +899,10 @@ h2 {
 
   .avatar-preview {
     min-height: 480px;
+  }
+
+  .avatar-character {
+    transform: translateX(-50%) scale(0.9);
+    transform-origin: bottom center;
   }
 }
