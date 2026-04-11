@@ -292,6 +292,16 @@ h2 {
   filter: drop-shadow(0 24px 34px rgba(85, 37, 59, 0.14));
 }
 
+.avatar-reference-base {
+  position: absolute;
+  left: 50%;
+  bottom: 48px;
+  width: min(290px, 74%);
+  transform: translateX(-50%);
+  filter: drop-shadow(0 22px 30px rgba(85, 37, 59, 0.14));
+  pointer-events: none;
+}
+
 .avatar-canvas [hidden] {
   display: none !important;
 }

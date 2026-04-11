@@ -40,8 +40,21 @@ const DEFAULT_STATE = {
   background: "cotton"
 };
 
-const STORAGE_KEY = "timba-avatar-state-v2";
-const PREVIOUS_STORAGE_KEYS = ["timba-avatar-state", "julia-avatar-state"];
+const REFERENCE_BASE_STATE = {
+  skin: "golden",
+  hairStyle: "bun",
+  hairColor: "chestnut",
+  eyes: "bright",
+  eyeColor: "brown",
+  outfit: "top",
+  outfitColor: "sun",
+  accessory: "none",
+  hairBling: "none",
+  jewelry: "none"
+};
+
+const STORAGE_KEY = "timba-avatar-state-v3";
+const PREVIOUS_STORAGE_KEYS = ["timba-avatar-state-v2", "timba-avatar-state", "julia-avatar-state"];
 
 const LEGACY_MAP = {
   hairStyle: {
@@ -88,6 +101,7 @@ const state = loadState();
 
 const preview = document.getElementById("avatar-preview");
 const avatarCanvas = document.getElementById("avatar-canvas");
+const referenceBase = document.getElementById("avatar-reference-base");
 const score = document.getElementById("style-score");
 const nameInput = document.getElementById("avatar-name");
 const nameplate = document.getElementById("avatar-nameplate");
@@ -159,6 +173,10 @@ function renderAvatar() {
   preview.style.setProperty("--outfit-color", OPTIONS.outfitColor[state.outfitColor]);
   preview.style.setProperty("--eye-color", OPTIONS.eyeColor[state.eyeColor]);
 
+  const useReferenceBase = shouldUseReferenceBase();
+  referenceBase.hidden = !useReferenceBase;
+  avatarCanvas.hidden = useReferenceBase;
+
   toggleVariant('[data-style]', state.hairStyle);
   toggleVariant('[data-eyes]', state.eyes);
   toggleVariant('[data-outfit]', state.outfit);
@@ -168,6 +186,10 @@ function renderAvatar() {
 
   score.textContent = calculateScore();
   persistState();
+}
+
+function shouldUseReferenceBase() {
+  return Object.entries(REFERENCE_BASE_STATE).every(([key, value]) => state[key] === value);
 }
 
 function toggleVariant(selector, activeValue) {
@@ -337,6 +359,11 @@ function buildExportSvg(width, height) {
   const plateWidth = Math.max(210, label.length * 18 + 84);
   const plateX = (width - plateWidth) / 2;
   const svgContent = avatarCanvas.innerHTML;
+  const useReferenceBase = shouldUseReferenceBase();
+  const baseImageUrl = escapeXml(new URL("avatar1.png", window.location.href).href);
+  const avatarMarkup = useReferenceBase
+    ? `<image href="${baseImageUrl}" x="62" y="18" width="296" height="444" preserveAspectRatio="xMidYMid meet" />`
+    : `<svg x="0" y="40" width="${width}" height="${height - 120}" viewBox="0 0 420 520">${svgContent}</svg>`;
 
   return `
     <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
@@ -347,9 +374,7 @@ function buildExportSvg(width, height) {
         ${buildExportStyles()}
       </style>
       ${buildBackgroundMarkup(width, height)}
-      <svg x="0" y="40" width="${width}" height="${height - 120}" viewBox="0 0 420 520">
-        ${svgContent}
-      </svg>
+      ${avatarMarkup}
       <g>
         <rect x="${plateX}" y="${height - 112}" width="${plateWidth}" height="64" rx="32" fill="rgba(85,37,59,0.82)" />
         <text x="${width / 2}" y="${height - 72}" fill="#ffffff" text-anchor="middle" dominant-baseline="middle" font-size="32" font-weight="700" font-family="Quicksand, Arial, sans-serif">${label}</text>
