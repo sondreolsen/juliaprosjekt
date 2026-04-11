@@ -373,7 +373,7 @@ function drawNeck(context, skin) {
 function drawHead(context, skin) {
   context.fillStyle = skin;
   context.beginPath();
-  context.ellipse(0, -62, 68, 88, 0, 0, Math.PI * 2);
+  context.ellipse(0, -60, 64, 92, 0, 0, Math.PI * 2);
   context.fill();
 
   context.beginPath();
@@ -387,10 +387,10 @@ function drawHair(context, hairColor) {
 
   if (state.hairStyle === "buns") {
     context.beginPath();
-    context.arc(-56, -154, 26, 0, Math.PI * 2);
-    context.arc(56, -154, 26, 0, Math.PI * 2);
+    context.arc(-54, -158, 26, 0, Math.PI * 2);
+    context.arc(54, -158, 26, 0, Math.PI * 2);
     context.fill();
-    roundRect(context, -56, -148, 112, 72, 26);
+    roundRect(context, -56, -154, 112, 74, 28);
     context.fill();
   } else if (state.hairStyle === "spike") {
     context.beginPath();
@@ -404,16 +404,16 @@ function drawHair(context, hairColor) {
     context.closePath();
     context.fill();
   } else if (state.hairStyle === "bob") {
-    roundRect(context, -82, -154, 164, 102, 32);
+    roundRect(context, -86, -162, 172, 112, 34);
     context.fill();
-    roundRect(context, -78, -98, 30, 82, 18);
-    roundRect(context, 48, -98, 30, 82, 18);
+    roundRect(context, -82, -104, 32, 104, 18);
+    roundRect(context, 50, -104, 32, 104, 18);
     context.fill();
   } else {
-    roundRect(context, -84, -154, 168, 92, 36);
+    roundRect(context, -88, -162, 176, 100, 38);
     context.fill();
-    roundRect(context, -78, -100, 28, 78, 18);
-    roundRect(context, 50, -100, 28, 78, 18);
+    roundRect(context, -84, -108, 30, 100, 18);
+    roundRect(context, 54, -108, 30, 100, 18);
     context.fill();
   }
 }
@@ -423,10 +423,10 @@ function drawFace(context, eyeColor) {
   context.lineWidth = 6;
   context.lineCap = "round";
   context.beginPath();
-  context.moveTo(-34, -92);
-  context.lineTo(-16, -92);
-  context.moveTo(16, -92);
-  context.lineTo(34, -92);
+  context.moveTo(-34, -96);
+  context.quadraticCurveTo(-24, -104, -12, -96);
+  context.moveTo(12, -96);
+  context.quadraticCurveTo(24, -104, 34, -96);
   context.stroke();
 
   drawEye(context, -24, -62, eyeColor, state.eyes === "wink" ? "open" : state.eyes);
@@ -446,11 +446,10 @@ function drawFace(context, eyeColor) {
   context.ellipse(42, -10, 14, 8, 0, 0, Math.PI * 2);
   context.fill();
 
-  context.strokeStyle = "#d34e73";
-  context.lineWidth = 4;
+  context.fillStyle = "#c75870";
   context.beginPath();
-  context.arc(0, 20, 13, 0.15, Math.PI - 0.15);
-  context.stroke();
+  context.ellipse(0, 20, 15, 8, 0, 0, Math.PI * 2);
+  context.fill();
 }
 
 function drawEye(context, x, y, eyeColor, mode) {
@@ -466,11 +465,17 @@ function drawEye(context, x, y, eyeColor, mode) {
 
   context.fillStyle = "#ffffff";
   context.beginPath();
-  context.ellipse(x, y, 14, mode === "dreamy" ? 14 : 18, 0, 0, Math.PI * 2);
+  context.ellipse(x, y, 15, mode === "dreamy" ? 15 : 18, 0, 0, Math.PI * 2);
   context.fill();
 
   context.strokeStyle = "rgba(89,38,58,0.85)";
   context.lineWidth = 3;
+  context.stroke();
+
+  context.strokeStyle = "rgba(89,38,58,0.82)";
+  context.lineWidth = 3;
+  context.beginPath();
+  context.arc(x, y - 8, 12, Math.PI * 1.08, Math.PI * 1.92);
   context.stroke();
 
   context.fillStyle = eyeColor;
